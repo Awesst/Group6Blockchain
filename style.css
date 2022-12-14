@@ -2,7 +2,7 @@
   margin: 0 0;
   padding: 0 0;
   box-sizing: border-box;
-  font-family: "Rubik", sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .first-background {
@@ -19,10 +19,53 @@ span {
   width: 100vw;
   z-index: 0;
 }
+.header {
+  height: 2.5vh;
+}
+ul {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 20px 0px 20px;
+  font-size: 1.2rem;
+}
+li {
+  margin-top: 15px;
+}
+
+ul,
+li,
+a {
+  text-decoration: none;
+  list-style-type: none;
+}
+a {
+  background-color: black;
+  color: rgb(171, 49, 171);
+  cursor: pointer;
+}
+a:hover {
+  color: white;
+}
+#geoG {
+  color: rgb(31, 19, 161);
+}
+#geo {
+  font-size: 3rem;
+  font-style: italic;
+  color: rgb(171, 49, 171);
+}
+#mi {
+  font-size: 2rem;
+  font-style: italic;
+  color: rgb(210, 190, 40);
+}
+#form-container {
+  color: white;
+}
 
 .container {
   position: absolute;
-  top: 5vh;
+  top: 2vh;
   left: 50%;
   width: 40%;
   margin-left: -20%;
