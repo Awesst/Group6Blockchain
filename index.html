@@ -1,50 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="phone.css" />
+    <script src="location-script.js" defer></script>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="phone.css">
-  <script src="location-script.js" defer></script>
+    <title>Geolocation -- You. Can't. Hide.</title>
+  </head>
 
-  <title>Geolocation -- You. Can't. Hide.</title>
-
-</head>
-
-<body>
-
-  <div class="first-background">
-    <div class="container">
-      <div class="title">The API has you</div>
-      <div class="search-box">
-        <textarea name="" class="search-input" placeholder="You. Can't. Hide."></textarea>
-        <div class="search-button">
-          <img src="images/icon-arrow.svg" alt="" class="arrow">
+  <body>
+    <div class="first-background">
+      <div class="container">
+        <div class="title">
+          <span>YOU</span> can always run, But you can never <span>HIDE</span>
         </div>
-      </div>
-      <div class="info-box">
-        <div class="ip">
-          <div class="header">IP ADDRESS</div>
-          <div class="content ip-info"></div>
+        <div class="search-box">
+          <textarea
+            name=""
+            class="search-input"
+            placeholder="You. Can't. Hide."
+          ></textarea>
+          <div class="search-button">
+            <img src="images/icon-arrow.svg" alt="" class="arrow" />
+          </div>
         </div>
-        <div class="line"></div>
-        <div class="location">
-          <div class="header">LOCATION</div>
-          <div class="content location-info"></div>
-        </div>
-        <div class="line"></div>
-        <div class="timezone">
-          <div class="header">LATITUDE</div>
-          <div class="content latitude-info"></div>
-        </div>
-        <div class="line"></div>
-        <div class="isp">
-          <div class="header">LONGITUDE</div>
-          <div class="content longitude-info"></div>
+        <div class="info-box">
+          <div class="ip">
+            <div class="header">IP ADDRESS</div>
+            <div class="content ip-info"></div>
+          </div>
+          <div class="line"></div>
+          <div class="location">
+            <div class="header">LOCATION</div>
+            <div class="content location-info"></div>
+          </div>
+          <div class="line"></div>
+          <div class="timezone">
+            <div class="header">LATITUDE</div>
+            <div class="content latitude-info"></div>
+          </div>
+          <div class="line"></div>
+          <div class="isp">
+            <div class="header">LONGITUDE</div>
+            <div class="content longitude-info"></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>

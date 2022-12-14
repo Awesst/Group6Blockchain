@@ -7,8 +7,11 @@
 
 .first-background {
   position: relative;
-  height: 35vh;
-  background: url(images/pattern-bg.png) center center / cover;
+  height: 100vh;
+  background: url(images/MB.jpg) center center / cover;
+}
+span {
+  color: rgb(171, 49, 171);
 }
 
 #map {
@@ -81,7 +84,7 @@
   height: 100%;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: black;
+  background-color: rgb(171, 49, 171);
   cursor: pointer;
 }
 
