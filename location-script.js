@@ -20,28 +20,3 @@ searchButton.addEventListener("click", () => {
       longitudeInfo.textContent = data.lon;
     });
 });
-
-const logIn = document.getElementById("logIn");
-logIn.addEventListener("click", function () {
-  logIn.style.display = "none";
-  //   generateForm();
-  // här sätter vi in vad som ska hända :)
-});
-
-// function generateForm() {
-//   let formContainer = document.getElementById("form-container");
-//   formContainer.innerHTML =
-//     "<form>" +
-//     "  <label for='username'>Username:</label><br>" +
-//     "  <input type='text' id='username'><br>" +
-//     "  <label for='password'>Password:</label><br>" +
-//     "  <input type='password' id='password'><br><br>" +
-//     "</form>";
-// }
-
-const logOut = document.getElementById("logOut");
-logOut.addEventListener("click", function () {
-  // här sätter vi in vad som ska hända :)
-  logOut.style.display = "none";
-  logIn.style.display = "block";
-});

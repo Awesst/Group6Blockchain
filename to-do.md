@@ -2,11 +2,11 @@ GENERAL
 
 [ ] Web service -- why it should be run on a blockchain? Motivate
 [ ] Use localStorage to store entire chain
-[ ] 
 [ ]
 [ ]
 [ ]
-[ ] 
+[ ]
+[ ]
 
 LOGGED IN STATE
 
@@ -14,20 +14,19 @@ LOGGED IN STATE
 [ ] User can add new blocks
 [ ] User can see their own blocks -- add sorting function?
 [ ] Exact coordinates (latitude/longitude) are saved in each user generated block
-[ ] 
-[ ] 
-[ ] 
+[ ]
+[ ]
+[ ]
 
 PUBLIC USER
 
-[ ] Without login, content of chain shall be available 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
-[ ] 
+[ ] Without login, content of chain shall be available
+[ ]
+[ ]
+[ ]
+[ ]
+[ ]
 
-
-OTHER 
+OTHER
 
 [ ] Publish on Github
