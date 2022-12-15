@@ -6,11 +6,11 @@
     margin-left: -50%;
   }
 
-  .search-box {
+  .searchBox {
     width: 80vw;
   }
 
-  .search-input {
+  .searchInput {
     padding-left: 2vw;
     height: 80%;
     line-height: 0vh;
@@ -18,7 +18,7 @@
     line-height: 6vh;
   }
 
-  .search-input::placeholder {
+  .searchInput::placeholder {
     font-size: 0.9rem;
     line-height: 6.2vh;
   }
@@ -27,7 +27,7 @@
     display: none;
   }
 
-  .info-box {
+  .infoBox {
     grid-template-columns: none;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     height: 35vh;
