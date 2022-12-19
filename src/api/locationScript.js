@@ -1,13 +1,12 @@
 export function rollApi(searchButton, input) {
 
-
-    let ip = input.value;
-
     // function that converts ipv4 IP address to approx. location and coordinates
     function geoLocate() {
 
-        let link = `http://ip-api.com/json/${ip}`;   
-        fetch(link)
+        let ip = input.value;
+
+        const geoLocateURL = `http://ip-api.com/json/${ip}`;
+        fetch(geoLocateURL)
             .then(response => response.json())
             .then(data => {
 
@@ -22,37 +21,38 @@ export function rollApi(searchButton, input) {
                 latitudeInfo.textContent = data.lat;
                 longitudeInfo.textContent = data.lon;
             })
+            .catch(err => console.log(err));
     }
 
     // call GeoCoding API: Converts given address into lat/long; autocompletes to best match
     function geoCode() {
 
-        input.addEventListener("input", () => {
+        // debouncing input: see debounce()
+        input.addEventListener((debounce(input)), () => {
 
             const inputAddress = input.value;
 
-            /* I have two APi keys: 
-            1bdf6769d5f44e10b1c2bba7b8fe6844
-            d464031d465347aea999824e70b8ac2c
-            Whe site doesn't fetch, replace API key, that often fixes it  */
-            const myAPIKey = "1bdf6769d5f44e10b1c2bba7b8fe6844";
+            // APi keys: 1bdf6769d5f44e10b1c2bba7b8fe6844 ; d464031d465347aea999824e70b8ac2c; c5bc2c56928c4feb80c40df48fe1426c ; 1d19b840746b43e9b94f168837424c7a
+            const myAPIKey = "c5bc2c56928c4feb80c40df48fe1426c";
 
             const geocodingURL = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(inputAddress)}&apiKey=${myAPIKey}`;
 
-            // https://www.geoapify.com/tutorial/how-to-implement-geocoding-javascript-tutorial
+            // Call Geocoding API - https://www.geoapify.com/geocoding-api/
             fetch(geocodingURL).then(result => result.json())
                 .then(featureCollection => {
-
+                    console.log(featureCollection);
                     const foundAddress = featureCollection.features[0];
                     let location = foundAddress.properties.city + ", " + foundAddress.properties.country;
 
+                    let ipInfo = document.getElementsByClassName('ipInfo')[0];
                     let locationInfo = document.getElementsByClassName('locationInfo')[0];
                     let latitudeInfo = document.getElementsByClassName('latitudeInfo')[0];
                     let longitudeInfo = document.getElementsByClassName('longitudeInfo')[0];
+
+                    ipInfo.textContent = ""; // to empty IP field when not known
                     locationInfo.textContent = location;
                     latitudeInfo.textContent = foundAddress.properties.lat;
                     longitudeInfo.textContent = foundAddress.properties.lon;
-                    
                 })
                 .catch(err => console.log(err));
         })
@@ -71,8 +71,8 @@ export function rollApi(searchButton, input) {
             geoLocate();
         }
 
-        else if (input.value !== ipFormat) {
-            geoCode(); // geoCode
+        else if (input.value !== ipFormat && input.value) {
+            geoCode();
         }
 
         else {
@@ -81,4 +81,16 @@ export function rollApi(searchButton, input) {
         }
 
     })
+}
+
+// debouncing: eliminating unwanted signals from an input, so that it doesn't send a query after every key pressed, but with a delay in [ms]
+
+function debounce(func, delay = 1000) {
+    let timerId;
+    return (...args) => {
+        clearTimeout(timerId);
+        timerId = setTimeout(() => {
+            func.apply(this, args);
+        }, delay);
+    };
 }
