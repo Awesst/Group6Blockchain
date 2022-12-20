@@ -1,3 +1,5 @@
+import { default as Chain } from "/src/blockchain/chain.js";
+
 export { createLoginField };
 
 const users = [
@@ -38,13 +40,24 @@ function createLoginField() {
 
 function createLoggedInView() {
   //CREATES THE VIEW THAT LOGGED IN USER SEES +LOGOUT BTN
-
+  let currentUser = localStorage.getItem("userLoggedIn");
   loginContainer.innerHTML = "";
   let loggedinView = document.createElement("h4");
   loginContainer.appendChild(loggedinView);
-  loggedinView.innerHTML =
-    'Välkommen, du är nu inloggad <br></br> <button id="logoutBtn" >Log out</button>';
+  loggedinView.innerHTML = 
+  'Välkommen ' +currentUser + ', du är nu inloggad. <br></br><button id="saveLocationBtn">Save my location to the chain </button><button id="viewMyLocationsBtn" >View my saved Locations</button><br></br><button id="logoutBtn" >Log out</button> ';  
+  
+  let saveLocationBtn = document.getElementById("saveLocationBtn");
+  let viewMyLocationsBtn = document.getElementById("viewMyLocationsBtn");
   let logoutBtn = document.getElementById("logoutBtn");
+
+  saveLocationBtn.addEventListener("click", () => {
+    //INSERT FUNCTION FOR CREATING A NEW BLOCK
+  });
+
+  viewMyLocationsBtn.addEventListener("click", () => {
+    //INSERT FUNCTION FOR DISPLAYING CURRENTLY LOGGED IN USER'S SAVED BLOCKS
+  });
 
   logoutBtn.addEventListener("click", () => {
     createLoginField();
