@@ -27,14 +27,11 @@ export function rollApi(searchButton, input) {
     // call GeoCoding API: Converts given address into lat/long; autocompletes to best match
     function geoCode() {
 
-        // debouncing input: see debounce()
-        input.addEventListener((debounce(input)), () => {
+        input.addEventListener((input), () => {
 
-            const inputAddress = input.value;
-
-            // APi keys: 1bdf6769d5f44e10b1c2bba7b8fe6844 ; d464031d465347aea999824e70b8ac2c; c5bc2c56928c4feb80c40df48fe1426c ; 1d19b840746b43e9b94f168837424c7a
+            const inputAddress = debounce(input.value);      // debouncing input: see debounce()
             const myAPIKey = "c5bc2c56928c4feb80c40df48fe1426c";
-
+           
             const geocodingURL = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(inputAddress)}&apiKey=${myAPIKey}`;
 
             // Call Geocoding API - https://www.geoapify.com/geocoding-api/
@@ -56,7 +53,6 @@ export function rollApi(searchButton, input) {
                 })
                 .catch(err => console.log(err));
         })
-
     }
 
     searchButton.addEventListener('click', () => {
