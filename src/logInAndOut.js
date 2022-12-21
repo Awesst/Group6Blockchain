@@ -1,5 +1,4 @@
 export { createLoginField };
-// import { validateChain } from "./blockchain/validateChain.js";
 
 const users = [
   { userName: "Janne", passWord: "Kemi" },
@@ -39,7 +38,7 @@ function createLoginField() {
 
 function createLoggedInView() {
   //CREATES THE VIEW THAT LOGGED IN USER SEES +LOGOUT BTN
-  let currentUser = localStorage.getItem("userLoggedIn");
+
   loginContainer.innerHTML = "";
   let loggedinView = document.createElement("h4");
   loginContainer.appendChild(loggedinView);
@@ -66,20 +65,6 @@ window.onload = () => {
     loginFormButton();
   }
 };
-
-
-export function validateChainBtn() {
-  validateContainer.innerHTML = "";
-  let validateButton = document.createElement("button");
-  validateContainer.appendChild(validateButton);
-  validateButton.innerHTML =
-    '<button id="validateBtn" >Validate Button</button>';
-  let validateBtn = document.getElementById("validateBtn");
-
-  validateBtn.addEventListener("click", () => {
-    // validateChain();
-    console.log("Jakob är bäst!");
-  });
 
 export function loginFormButton() {
   loginFormContainer.innerHTML = "";
