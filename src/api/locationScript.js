@@ -23,50 +23,66 @@ export function rollApi(searchButton, input) {
 
                 localStorage.setItem("latitude", data.lat);
                 localStorage.setItem("longitude", data.lon);
+                localStorage.setItem("city", data.city);
+                localStorage.setItem("country", data.country);
             })
             .catch(err => console.log(err));
     }
 
     // call GeoCoding API: Converts given address into lat/long; autocompletes to best match
-    function geoCode() {
+    const myAPIKey = "1bdf6769d5f44e10b1c2bba7b8fe6844";
+    const geocodingURL = "https://api.geoapify.com/v1/geocode/search";
 
-        let timer; // debouncing
+    let timeoutId;
 
-        input.addEventListener("input", () => {
-            if (timer) {
-                clearTimeout(timer);
-            }
+    async function geoCode(address) {
+        // Clear any existing timeout
+        clearTimeout(timeoutId);
 
-            timer = setTimeout(() => {
-                const inputAddress = input.value;
-                const myAPIKey = "1bdf6769d5f44e10b1c2bba7b8fe6844";
-                const geocodingURL = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(inputAddress)}&apiKey=${myAPIKey}`; // The encodeURIComponent function is used to encode the inputAddress variable as a URL component, which is necessary to properly pass it in the URL
+        // Set a new timeout to call the function after 1 second
+        timeoutId = setTimeout(async () => {
+            // Build the API request URL
+            const requestURL = `${geocodingURL}?apiKey=${myAPIKey}&text=${encodeURIComponent(address)}`;
 
-                fetch(geocodingURL)
-                    .then((result) => result.json())
-                    .then((featureCollection) => {
-                        console.log(featureCollection);
-                        const foundAddress = featureCollection.features[0];
-                        let location = foundAddress.properties.city + ", " + foundAddress.properties.country;
+            // Make the API request
+            const response = await fetch(requestURL);
+            const data = await response.json();
 
-                        let ipInfo = document.getElementsByClassName("ipInfo")[0];
-                        let locationInfo = document.getElementsByClassName("locationInfo")[0];
-                        let latitudeInfo = document.getElementsByClassName("latitudeInfo")[0];
-                        let longitudeInfo = document.getElementsByClassName("longitudeInfo")[0];
+            let ipInfo = document.getElementsByClassName("ipInfo")[0];
+            let locationInfo = document.getElementsByClassName("locationInfo")[0];
+            let latitudeInfo = document.getElementsByClassName("latitudeInfo")[0];
+            let longitudeInfo = document.getElementsByClassName("longitudeInfo")[0];
 
-                        ipInfo.textContent = ""; // to empty IP field when not known
-                        locationInfo.textContent = location;
-                        latitudeInfo.textContent = foundAddress.properties.lat;
-                        longitudeInfo.textContent = foundAddress.properties.lon;
+            // Extract the city, country, latitude, and longitude from the API response
+        
+            const city = data.features[0].properties.city;
+            const country = data.features[0].properties.country;
+            const latitude = data.features[0].geometry.coordinates[1];
+            const longitude = data.features[0].geometry.coordinates[0];
 
-                        localStorage.setItem("latitude", foundAddress.properties.lat);
-                        localStorage.setItem("longitude", foundAddress.properties.lon);
+            let location = data.features[0].properties.city + ", " + data.features[0].properties.country;
 
-                    })
-                    .catch((err) => console.log(err));
-            }, 1000); // the debouncing interval, in this case 1 second
-        });
+            ipInfo.textContent = ""; // to empty IP field when not known
+            locationInfo.textContent = location;
+            latitudeInfo.textContent = data.features[0].geometry.coordinates[1];
+            longitudeInfo.textContent = data.features[0].geometry.coordinates[0];
+
+            localStorage.setItem("latitude", data.features[0].geometry.coordinates[1]);
+            localStorage.setItem("longitude", data.features[0].geometry.coordinates[0]);
+            localStorage.setItem("city", data.features[0].properties.city);
+            localStorage.setItem("country", data.features[0].properties.country);
+
+        }, 1000);
     }
+
+    // Add an event listener to the input field
+    input.addEventListener("input", () => {
+        // Get the user-entered text from the input field
+        const address = input.value;
+
+        // Geocode the address
+        geoCode(address);
+    });
 
     searchButton.addEventListener("click", () => {
 
