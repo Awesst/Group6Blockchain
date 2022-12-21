@@ -194,6 +194,13 @@ h4 {
 }
 
 #loginBtn {
+  background-color: rgb(210, 190, 40);
+}
+
+#validateBtn {
+  background-color: rgb(32, 167, 32);
+  width: 100px;
+  height: 100px;
   background-color: black;
   color: white;
   border: 2px solid rgb(171, 49, 171);
