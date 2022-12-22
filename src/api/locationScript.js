@@ -109,4 +109,4 @@ export function rollApi(searchButton, input) {
             // as the second API autocompletes wery widely, we pretty much never end up here. Kept it as placeholder just to close the statement.
         }
     })
-}
+} 
