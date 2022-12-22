@@ -75,14 +75,13 @@ window.onload = () => {
 
 export function validateChainBtn() {
   validateContainer.innerHTML = "";
-  let validateButton = document.createElement("button");
-  validateContainer.appendChild(validateButton);
-  validateButton.innerHTML =
-    '<button id="validateBtn" >Validate Button</button>';
-  let validateBtn = document.getElementById("validateBtn");
+  let validateBtn = document.createElement("button");
+  validateBtn.id = "validateBtn";
+  validateBtn.innerText = "Validate Button";
+  validateContainer.appendChild(validateBtn);
 
   validateBtn.addEventListener("click", () => {
-    // validateChain();
+    validateChain();
     console.log("Jakob är bäst!");
   });
 }
