@@ -4,7 +4,7 @@ import { validateChain } from "./blockchain/validateChain.js";
 import { default as Block } from "/src/blockchain/block.js";
 
 
-//let first = new Chain();
+let first = new Chain();
 
 const users = [
   { userName: "Janne", passWord: "Kemi" },
@@ -171,12 +171,21 @@ function createLoggedInView() {
       let item = document.createElement("li", "br");
       item.setAttribute("class", "displayBoxes");
       newH2.appendChild(item);
+
+
+      // still ugly som fan formatting haha
+
+      let blockNumber = document.createElement("p");
+      blockNumber.innerHTML = "Block " + (i + 1);
+      blockNumber.style.fontWeight = "bold";
+      item.appendChild(blockNumber);
+
+
       let userRow = document.createElement("p");
       userRow.innerHTML = "user: " + mySavedBlocks[i].data.user;
       item.appendChild(userRow);
 
 
-      // still ugly som fan formatting haha
 
       let longitudeRow = document.createElement("p");
       longitudeRow.innerHTML = "longitude: " + mySavedBlocks[i].data.longitude;

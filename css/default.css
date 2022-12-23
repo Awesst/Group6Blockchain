@@ -203,3 +203,7 @@ h4 {
 .displayBoxes {
   width: 100%;
 }
+
+li.displayBoxes {
+  list-style: none; 
+}
