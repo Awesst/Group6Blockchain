@@ -14,27 +14,65 @@ export default class Chain {
       { user: "Genesis", longitude: 0, latitude: 0 },
       "7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069",
       "0"
-    ); //I'VE PUT LOCATION HERE INSTEAD OF JANNES WORK, NOT SURE IF THIS IS WHAT WE WANT TO HAVE HERE?
+    );
   }
 
   getLatestBlock() {
-    //FETCH PREVIOUS BLOCK
-    return this.blockChain[this.blockChain.length - 1].newHash; //RETURNS PREVIOUS POST IN ARRAY BUT SKIPS GENESISBLOCK
+    // FETCH PREVIUOS BLOCK IN WHOLE
+    return this.blockChain[this.blockChain.length - 1];
   }
 
+  async getLatestBlockHash() {
+    //FETCH PREVIOUS BLOCK HASH
+    return this.blockChain[this.blockChain.length - 1].newHash; //RETURNS PREVIOUS BLOCK'S HASH BUT SKIPS GENESISBLOCK
+  }
+  /*
+    async addBlock() {
+      // FETCH DATA FROM LOCAL STORAGE
+      const user = localStorage.getItem("userLoggedIn");
+      const longitude = localStorage.getItem("longitude");
+      const latitude = localStorage.getItem("latitude");
+    
+      // CREATE NEW BLOCK OBJECT
+      const newBlock = { user, longitude, latitude }; // no timestamp???????????
+    
+      // CALCULATE HASH OF NEW BLOCK
+      const newBlockHash = await calculateHash(newBlock);
+    
+      // GET LATEST BLOCK IN CHAIN
+      const latestBlock = this.getLatestBlockHash(); // only hash goes into new block
+    
+      // PUSH NEW BLOCK TO CHAIN
+      this.blockChain.push(new Block(newBlock + latestBlock + newBlockHash));
+    } */
   async addBlock() {
-    //ADD NEW BLOCK TO THE CHAIN
-    let newBlock = {
-      user: localStorage.getItem("userLoggedIn"),
-      longitude: localStorage.getItem("longitude"),
-      latitude: localStorage.getItem("latitude"),
-    };
-    return this.blockChain.push(
-      new Block(
-        newBlock,
-        await calculateHash(newBlock + this.getLatestBlock()),
-        await this.getLatestBlock()
-      ) //must input user. User info array should be put in newBlock variable.
-    );
+
+    // fetch loggedInUser + location data from LS
+    const user = localStorage.getItem("userLoggedIn");
+    const longitude = localStorage.getItem("longitude");
+    const latitude = localStorage.getItem("latitude");
+    const city = localStorage.getItem("city"); // need that too to play with
+    const country = localStorage.getItem("country"); // and that one, too
+
+    const timestamp = Date.now(); // (milliseconds)
+    const randomNumber = Math.random();
+
+    // new block object with uuid
+    const newBlock = {user, longitude, latitude, city, country, timestamp, randomNumber};
+
+    // hashing new block
+    const newBlockHash = await calculateHash(newBlock);
+
+    // latest block in chain
+    const previousBlock = this.getLatestBlock();
+
+    // ternary operator: if-else --> check if previousBlock is not null or undefined --> if it is valid, get newHash
+    // if the prevHash is invalid, it sets it to === 0, stored as prevHash
+    // syntax: boolean --> ?true or :false
+    const previousHash = previousBlock ? previousBlock.newHash : "0";
+
+    // push new block to chain
+    this.blockChain.push(new Block(newBlock, newBlockHash, previousHash));
   }
 }
+

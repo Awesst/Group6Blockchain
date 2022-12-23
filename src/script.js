@@ -27,7 +27,7 @@ createLoginField();
 validateChainBtn();
 
 //------ Testa Bockkedjan ------//
-let first = new Chain();
+//let first = new Chain();
 // first.addBlock("första blocket");
 // first.addBlock("andra blocket");
 // first.addBlock("tredje blocket");

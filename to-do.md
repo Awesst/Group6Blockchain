@@ -1,21 +1,21 @@
 GENERAL
 
-[ ] web service -- why it should be run on a blockchain? Motivate
-[ ] js in modules
-[ ] use localStorage to store entire chain
+[?] web service -- why it should be run on a blockchain? Motivate
+[x] js in modules
+[x] use localStorage to store entire chain
 [x] use an API to fetch location data
-[ ] motivate choice of API
-[ ] preset users in JSON like janne/test
+[x] motivate choice of API
+[x] preset users in JSON like janne/test
 [ ] 
 
 
 LOGGED IN STATE
 
-[ ] welcome message + logout button
-[ ] user should be able to see own geolocation data (their own saved approximate locations, say Hello ${loggedInUser}, you have logged in from the following locations [Luleå, Stockholm, La Paz]-- Don't recognize a login? Contact customer service. -- if it is now something we want to log/display at all)
-[ ] user can add new blocks
+[x] welcome message + logout button
+[x] user should be able to see own geolocation data (their own saved approximate locations, say Hello ${loggedInUser}, you have logged in from the following locations [Luleå, Stockholm, La Paz]-- Don't recognize a login? Contact customer service. -- if it is now something we want to log/display at all)
+[x] user can add new blocks
 [ ] user can see/sort their own blocks -- add sorting function?
-[ ] exact coordinates (latitude/longitude) could be saved in each user generated block
+[x] exact coordinates (latitude/longitude) could be saved in each user generated block
 [ ] display random Chuck Norris quote just for the sake of fun? (Caroline's)
 [ ] 
 
@@ -23,8 +23,7 @@ PUBLIC USER
 
 [ ] without login, content of chain shall be available 
 [ ] validation function available
-[ ] login option
-[ ] keep from login page task: ability to create new user
+[x] login option
 [ ] 
 [ ] 
 
@@ -34,7 +33,7 @@ MISC
 [ ] add password strength checker upon new user registration
 [ ] clean up code
 [ ] publish on Github
-[ ]
+[ ] disturb chain function? HACKING DA CHAINNN
 
 
 ////////////////////////////////////////////////////////////////////////////////

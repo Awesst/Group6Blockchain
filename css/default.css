@@ -177,6 +177,7 @@ h4 {
 
 #newH2 {
   padding: 20px;
+  width: 70vw;
   padding-right: 150px;
   font-size: 1.8ch;
   background-color: rgb(171, 49, 171);
@@ -197,4 +198,8 @@ h4 {
   width: 100vw;
   height: 100vh;
   background-color: black;
+}
+
+.displayBoxes {
+  width: 100%;
 }
