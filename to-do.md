@@ -29,7 +29,6 @@ PUBLIC USER
 
 MISC 
 
-[ ] add password strength checker upon new user registration
 [ ] clean up code
 [ ] publish on Github
 [ ] disturb chain function? HACKING DA CHAINNN
