@@ -24,12 +24,12 @@ function createLoginField() {
   //CREATES LOGIN INPUTFIELD AND BUTTON
 
   loginContainer.innerHTML =
-    '<input id="userName" type="text" placeholder="Username" class="styled-input"><input id="passWord" type="password" placeholder="Password" class="styled-input"></input><button id="loginBtn">Log in</button>';
+    '<input id="userName" type="text" placeholder="Username" class="styled-input"><input id="passWord" type="password" placeholder="Password" class="styled-input"></input><button id="loginButton">Log in</button>';
 
-  let loginBtn = document.getElementById("loginBtn");
-  loginBtn.className = "styled-button";
+  let loginButton = document.getElementById("loginButton");
+  loginButton.className = "styled-button";
 
-  loginBtn.addEventListener("click", () => {
+  loginButton.addEventListener("click", () => {
     const users = JSON.parse(localStorage.getItem("users"));
     const foundUser = users.find(
       (user) =>
@@ -45,7 +45,7 @@ function createLoginField() {
 }
 
 function createLoggedInView() {
-  //CREATES THE VIEW THAT LOGGED IN USER SEES +LOGOUT BTN
+  //CREATES THE VIEW THAT LOGGED IN USER SEES +LOGOUT Button
   let currentUser = localStorage.getItem("userLoggedIn");
   loginContainer.innerHTML = "";
   let loggedinView = document.createElement("h4");
@@ -53,19 +53,19 @@ function createLoggedInView() {
   loggedinView.innerHTML =
     "<br>Welcome, " +
     currentUser +
-    ', you have logged in! <br></br> <button id="logItBtn" style="margin-right: 10px;">Log my location</button><button id="viewMyBlocksBtn">View my saved locations</button><br></br><button id="logoutBtn" >Log out</button><br></br><h3 id="newH3"></h3>';
-  let logoutBtn = document.getElementById("logoutBtn");
-  logoutBtn.className = "styled-button";
+    ', you have logged in! <br></br> <button id="logItButton" style="margin-right: 10px;">Log my location</button><button id="viewMyBlocksButton">View my saved locations</button><br></br><button id="logoutButton" >Log out</button><br></br><h3 id="newH3"></h3>';
+  let logoutButton = document.getElementById("logoutButton");
+  logoutButton.className = "styled-button";
 
 
-  logoutBtn.addEventListener("click", () => {
+  logoutButton.addEventListener("click", () => {
     createLoginField();
     localStorage.removeItem("userLoggedIn");
   });
 
 
   // STORE CHAIN IN LOCALSTORAGE
-  const logItButton = document.getElementById("logItBtn");
+  const logItButton = document.getElementById("logItButton");
   logItButton.className = "styled-button";
 
   logItButton.addEventListener("click", async () => {
@@ -128,11 +128,11 @@ function createLoggedInView() {
 
 
 // DISPLAY ACTIVE USER'S OWN BLOCKS
-  let viewMyBlocksBtn = document.getElementById("viewMyBlocksBtn");
-  viewMyBlocksBtn.className = "styled-button";
+  let viewMyBlocksButton = document.getElementById("viewMyBlocksButton");
+  viewMyBlocksButton.className = "styled-button";
 
 
-  viewMyBlocksBtn.addEventListener("click", () => { ////NEW BUTTON 221222
+  viewMyBlocksButton.addEventListener("click", () => { ////NEW BUTTON 221222
 
     let loggedInUser = localStorage.getItem("userLoggedIn"); //HÄMTAR LOGGEDINUSER FRÅN LS
     console.log("Loggedinuser är: " + loggedInUser); //LOGGED IN USER
@@ -246,7 +246,7 @@ window.onload = () => {
   }
 };
 
-export function validateChainBtn() {
+export function validateChainButton() {
 
   let validateContainer = document.getElementById("validateContainer");
   validateContainer.innerHTML = "";

@@ -14,15 +14,15 @@ LOGGED IN STATE
 [x] welcome message + logout button
 [x] user should be able to see own geolocation data (their own saved approximate locations, say Hello ${loggedInUser}, you have logged in from the following locations [Luleå, Stockholm, La Paz]-- Don't recognize a login? Contact customer service. -- if it is now something we want to log/display at all)
 [x] user can add new blocks
-[ ] user can see/sort their own blocks -- add sorting function?
+[x] user can see/sort their own blocks -- add sorting function?
 [x] exact coordinates (latitude/longitude) could be saved in each user generated block
 [ ] display random Chuck Norris quote just for the sake of fun? (Caroline's)
 [ ] 
 
 PUBLIC USER
 
-[ ] without login, content of chain shall be available 
-[ ] validation function available
+[ ] without login, SOME part of chain shall be available 
+[x] validation function available
 [x] login option
 [ ] 
 [ ] 

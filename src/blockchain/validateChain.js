@@ -15,6 +15,7 @@ export function validateChain(chain) {
     return false;
   }
   }
-  console.log("Valid chain!");
+  console.log("Chain is valid");
   return true;
 }
+
