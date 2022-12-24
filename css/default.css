@@ -220,7 +220,7 @@ li.displayBoxes {
 
 #secondBackground {
   position: relative;
-  height: 100vh;
+  height: 1000vh;
   width: 100vw;
   background-color: black;
   background-attachment: scroll; /* doesn*t work here */
