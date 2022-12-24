@@ -5,8 +5,7 @@ GENERAL
 [x] use localStorage to store entire chain
 [x] use an API to fetch location data
 [x] motivate choice of API
-[x] preset users in JSON like janne/test
-[ ] 
+[x] preset users in JSON format
 
 
 LOGGED IN STATE
@@ -16,22 +15,20 @@ LOGGED IN STATE
 [x] user can add new blocks
 [x] user can see/sort their own blocks -- add sorting function?
 [x] exact coordinates (latitude/longitude) could be saved in each user generated block
-[ ] 
+
 
 PUBLIC USER
 
-[ ] without login, content of chain shall be available 
+[ ] without login, SOME content of chain shall be available 
 [x] validation function available
 [x] login option
-[ ] 
-[ ] 
 
 
 MISC 
 
 [ ] clean up code
 [ ] publish on Github
-[ ] disturb chain function? HACKING DA CHAINNN
+[ ] disturb chain function? HACKING DA CHAINNN?
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -55,5 +52,3 @@ VG krav:
 
 Ett externt API skall användas för att hämta data till tjänsten. Dokumentera och visa på presentationen vilket/vilka API’er ni har valt att använda och varför.
 Förutom dessa krav ovan får ni gärna själva lägga till fler funktioner!
-
-Förutom presentationen så skall ni lämna in ett gruppkontrakt under gruppuppgiftens första vecka, samt en code review på en annan grupps kod under sista veckan.

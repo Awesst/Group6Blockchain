@@ -140,6 +140,7 @@ function createLoggedInView() {
 
     let firstChain = localStorage.getItem("first");
     let chain;
+
     if (firstChain) {
       chain = JSON.parse(localStorage.getItem("first"));
       Object.setPrototypeOf(chain, Chain.prototype);
