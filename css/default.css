@@ -180,7 +180,7 @@ h4 {
   padding-right: 30px;
   font-size: 1.8ch;
   background-color: white;
-  border: 5px solid rgb(171, 49, 171);
+  border: 3px solid rgb(171, 49, 171);
   color: black;
   inline-size: min-content;
   border-radius: 15px;
@@ -200,18 +200,19 @@ h4 {
 
 li.displayBoxes {
   list-style: none;
+  font-weight: 100;
 }
 
-#validateContainer {
-  position: fixed;
-  top: 1vh;
-  left: 1vw;
+/* #validateContainer {
+  position: absolute;
+  top: 0px;
+  left: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100px;
   height: 100px;
-}
+} */
 
 #secondBackground {
   position: relative;
@@ -222,8 +223,8 @@ li.displayBoxes {
 
 .styled-button {
   background-color: white;
-  color:  black;
-  border: 2px solid  black;
+  color: black;
+  border: 2px solid black;
   border-radius: 5px;
   padding-top: 5px;
   padding-right: 5px;
@@ -239,7 +240,7 @@ li.displayBoxes {
 
 .styled-button-white {
   background-color: black;
-  color:  white;
+  color: white;
   border: 2px solid white;
   border-radius: 5px;
   padding-top: 5px;
@@ -249,13 +250,24 @@ li.displayBoxes {
   cursor: pointer;
 }
 
+.styled-button-white:hover {
+  border-color: rgb(171, 49, 171);
+  color: rgb(171, 49, 171);
+}
+
 .styled-input {
   border-radius: 5px;
   border: 2px solid black;
   padding-top: 5px;
   padding-right: 5px;
-  padding-bottom:5px;
+  padding-bottom: 5px;
   padding-left: 5px;
+}
+
+#validateButton {
+  position: sticky;
+  bottom: 5px;
+  left: 5px;
 }
 
 #validateButton:hover {

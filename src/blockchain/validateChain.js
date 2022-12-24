@@ -18,4 +18,3 @@ export function validateChain(chain) {
   console.log("Chain is valid");
   return true;
 }
-

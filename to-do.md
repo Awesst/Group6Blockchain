@@ -16,12 +16,11 @@ LOGGED IN STATE
 [x] user can add new blocks
 [x] user can see/sort their own blocks -- add sorting function?
 [x] exact coordinates (latitude/longitude) could be saved in each user generated block
-[ ] display random Chuck Norris quote just for the sake of fun? (Caroline's)
 [ ] 
 
 PUBLIC USER
 
-[ ] without login, SOME part of chain shall be available 
+[ ] without login, content of chain shall be available 
 [x] validation function available
 [x] login option
 [ ] 

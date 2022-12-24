@@ -251,7 +251,7 @@ export function validateChainButton() {
   let validateContainer = document.getElementById("validateContainer");
   validateContainer.innerHTML = "";
 
-  let validateButton = document.createElement("button");
+  let validateButton = document.createElement("validateButton");
   validateButton.className = "styled-button-white";
 
   validateButton.innerHTML = "Validate Chain";
