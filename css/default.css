@@ -8,8 +8,10 @@
 .firstBackground {
   position: relative;
   height: 100vh;
+  width: 100vw;
   background: url(/img/MB.jpg) center center / cover;
 }
+
 span {
   color: rgb(171, 49, 171);
 }
@@ -19,14 +21,17 @@ span {
   width: 100vw;
   z-index: 0;
 }
+
 #geoG {
   color: rgb(31, 19, 161);
 }
+
 #geo {
   font-size: 3rem;
   font-style: italic;
   color: rgb(171, 49, 171);
 }
+
 #mi {
   font-size: 2rem;
   font-style: italic;
@@ -153,6 +158,10 @@ span {
   justify-self: center;
 }
 
+#loggedinView {
+  margin-top: 20px;
+}
+
 h4 {
   background-color: white;
   width: 80vw;
@@ -160,44 +169,29 @@ h4 {
   z-index: 99;
   font-size: 2ch;
   color: rgb(171, 49, 171);
-}
-
-#loginBtn {
-  background-color: rgb(210, 190, 40);
-}
-
-#validateBtn {
-  position: fixed;
-  top: 1vh;
-  left: 1vw;
-  background-color: rgb(32, 167, 32);
-  width: 100px;
-  height: 100px;
+  border-radius: 15px;
+  padding-left: 20px;
 }
 
 #newH2 {
-  padding: 20px;
-  width: 70vw;
-  padding-right: 150px;
+  padding: 30px;
+  width: 700px;
+  padding-left: 30px;
+  padding-right: 30px;
   font-size: 1.8ch;
-  background-color: rgb(171, 49, 171);
+  background-color: white;
+  border: 5px solid rgb(171, 49, 171);
   color: black;
   inline-size: min-content;
+  border-radius: 15px;
 }
 
 .displayBoxes {
   font-size: 1.2ch;
-  border: 1px solid black;
-  padding: 5px;
+  border: 1px solid rgb(171, 49, 171);
+  padding: 10px;
   margin: 5px;
-}
-
-#secondBackground {
-  position: relative;
-  height: 100vh;
-  width: 100vw;
-  height: 100vh;
-  background-color: black;
+  border-radius: 5px;
 }
 
 .displayBoxes {
@@ -205,5 +199,65 @@ h4 {
 }
 
 li.displayBoxes {
-  list-style: none; 
+  list-style: none;
+}
+
+#validateContainer {
+  position: fixed;
+  top: 1vh;
+  left: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+}
+
+#secondBackground {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+}
+
+.styled-button {
+  background-color: white;
+  color:  black;
+  border: 2px solid  black;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+.styled-button:hover {
+  border-color: rgb(171, 49, 171);
+  color: rgb(171, 49, 171);
+}
+
+.styled-button-white {
+  background-color: black;
+  color:  white;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+.styled-input {
+  border-radius: 5px;
+  border: 2px solid black;
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-bottom:5px;
+  padding-left: 5px;
+}
+
+#validateBtn:hover {
+  opacity: 50%;
 }

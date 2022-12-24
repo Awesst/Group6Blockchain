@@ -24,9 +24,10 @@ function createLoginField() {
   //CREATES LOGIN INPUTFIELD AND BUTTON
 
   loginContainer.innerHTML =
-    '<input id="userName" type="text" placeholder="Username"><input id="passWord" type="password" placeholder="Password"></input><button id="loginBtn">Log in</button>';
+    '<input id="userName" type="text" placeholder="Username" class="styled-input"><input id="passWord" type="password" placeholder="Password" class="styled-input"></input><button id="loginBtn">Log in</button>';
 
   let loginBtn = document.getElementById("loginBtn");
+  loginBtn.className = "styled-button";
 
   loginBtn.addEventListener("click", () => {
     const users = JSON.parse(localStorage.getItem("users"));
@@ -50,10 +51,11 @@ function createLoggedInView() {
   let loggedinView = document.createElement("h4");
   loginContainer.appendChild(loggedinView);
   loggedinView.innerHTML =
-    "Välkommen " +
+    "<br>Welcome, " +
     currentUser +
-    ', du är nu inloggad <br></br> <button id="logItBtn">Log my location</button><button id="viewMyBlocksBtn">View my saved locations</button><br></br><button id="logoutBtn" >Log out</button><br></br><h3 id="newH3"></h3>';
+    ', you have logged in! <br></br> <button id="logItBtn" style="margin-right: 10px;">Log my location</button><button id="viewMyBlocksBtn">View my saved locations</button><br></br><button id="logoutBtn" >Log out</button><br></br><h3 id="newH3"></h3>';
   let logoutBtn = document.getElementById("logoutBtn");
+  logoutBtn.className = "styled-button";
 
 
   logoutBtn.addEventListener("click", () => {
@@ -64,6 +66,7 @@ function createLoggedInView() {
 
   // STORE CHAIN IN LOCALSTORAGE
   const logItButton = document.getElementById("logItBtn");
+  logItButton.className = "styled-button";
 
   logItButton.addEventListener("click", async () => {
     // CHECK IF CHAIN EXISTS IN LOCAL STORAGE
@@ -124,11 +127,13 @@ function createLoggedInView() {
   });
 
 
-
-
+// DISPLAY ACTIVE USER'S OWN BLOCKS
   let viewMyBlocksBtn = document.getElementById("viewMyBlocksBtn");
+  viewMyBlocksBtn.className = "styled-button";
+
 
   viewMyBlocksBtn.addEventListener("click", () => { ////NEW BUTTON 221222
+
     let loggedInUser = localStorage.getItem("userLoggedIn"); //HÄMTAR LOGGEDINUSER FRÅN LS
     console.log("Loggedinuser är: " + loggedInUser); //LOGGED IN USER
 
@@ -142,50 +147,42 @@ function createLoggedInView() {
     console.log("first.blockChain är: " + JSON.stringify(chain.blockChain)); //VISAR BLOCKKEDJAN
     console.log("first.blockChain[1].user är: " + JSON.stringify(chain.blockChain[1].data.user)); //VISAR VEM SOM SKAPAT BLOCK NR 2
 
-    let mySavedBlocks = chain.blockChain.filter(function (block) { //FILTRERAR UT DE BLOCK SOM LOGGED IN USER HAR SKAPAT I BLOCKKEDJAN OCH LÄGGER I NY ARRAY
+
+/*     let mySavedBlocks = chain.blockChain.filter(function (block) { //FILTRERAR UT DE BLOCK SOM LOGGED IN USER HAR SKAPAT I BLOCKKEDJAN OCH LÄGGER I NY ARRAY
 
       return block.data.user === loggedInUser;
-    });
+    }); */
 
-    /*     let parentEl = document.getElementById("newH3");
-        let newH2 = document.createElement("h2");
-        parentEl.appendChild(newH2);
-        newH2.setAttribute("id", "newH2");
-        newH2.innerHTML = "Here are your saved blocks";
-    
-        let list = document.createElement("ul");
-        newH2.appendChild(list);
-    
-        for (let i = 0; i < mySavedBlocks.length; i++) {
-          let item = document.createElement("li");
-          list.appendChild(item);
-          item.innerHTML = JSON.stringify(mySavedBlocks[i]); */
+    function getMySavedBlocks(chain, loggedInUser) { // I put the above in a function to be able to toggle (but too brain-dead to fix the toggle anyway) 
+      
+      return chain.blockChain.filter(function (block) {
+        return block.data.user === loggedInUser;
+      });
+    }
+
+    let mySavedBlocks = getMySavedBlocks(chain, loggedInUser);
 
     let parentEl = document.getElementById("newH3");
     let newH2 = document.createElement("h2");
     parentEl.appendChild(newH2);
     newH2.setAttribute("id", "newH2");
-    newH2.innerHTML = "Här är dina sparade block";
+    newH2.innerHTML = "Here are your saved blocks";
 
     for (let i = 0; i < mySavedBlocks.length; i++) {
       let item = document.createElement("li", "br");
       item.setAttribute("class", "displayBoxes");
       newH2.appendChild(item);
 
-
-      // still ugly som fan formatting haha
+      // displaying as drop-down table
 
       let blockNumber = document.createElement("p");
       blockNumber.innerHTML = "Block " + (i + 1);
-      blockNumber.style.fontWeight = "bold";
+      // blockNumber.style.fontWeight = "bold"; does not work
       item.appendChild(blockNumber);
-
 
       let userRow = document.createElement("p");
       userRow.innerHTML = "user: " + mySavedBlocks[i].data.user;
       item.appendChild(userRow);
-
-
 
       let longitudeRow = document.createElement("p");
       longitudeRow.innerHTML = "longitude: " + mySavedBlocks[i].data.longitude;
@@ -220,8 +217,24 @@ function createLoggedInView() {
       item.appendChild(newHashRow);
 
     }
+
   });
 }
+
+
+/*     let parentEl = document.getElementById("newH3");
+    let newH2 = document.createElement("h2");
+    parentEl.appendChild(newH2);
+    newH2.setAttribute("id", "newH2");
+    newH2.innerHTML = "Here are your saved blocks";
+ 
+    let list = document.createElement("ul");
+    newH2.appendChild(list);
+ 
+    for (let i = 0; i < mySavedBlocks.length; i++) {
+      let item = document.createElement("li");
+      list.appendChild(item);
+      item.innerHTML = JSON.stringify(mySavedBlocks[i]); */
 
 
 window.onload = () => {
@@ -234,14 +247,17 @@ window.onload = () => {
 };
 
 export function validateChainBtn() {
-  validateContainer.innerHTML = "";
-  let validateButton = document.createElement("button");
-  validateContainer.appendChild(validateButton);
-  validateButton.innerHTML =
-    '<button id="validateBtn" >Validate Button</button>';
-  let validateBtn = document.getElementById("validateBtn");
 
-  validateBtn.addEventListener("click", () => {
+  let validateContainer = document.getElementById("validateContainer");
+  validateContainer.innerHTML = "";
+
+  let validateButton = document.createElement("button");
+  validateButton.className = "styled-button-white";
+
+  validateButton.innerHTML = "Validate Chain";
+  validateContainer.appendChild(validateButton);
+
+  validateButton.addEventListener("click", () => {
     validateChain(first);
     console.log("Jakob är bäst!");
   });
