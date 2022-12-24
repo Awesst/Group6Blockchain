@@ -128,6 +128,7 @@ function createLoggedInView() {
 
 
 // DISPLAY ACTIVE USER'S OWN BLOCKS
+
   let viewMyBlocksButton = document.getElementById("viewMyBlocksButton");
   viewMyBlocksButton.className = "styled-button";
 
@@ -245,6 +246,9 @@ window.onload = () => {
     createLoginField();
   }
 };
+
+
+// VALIDATE CHAIN
 
 export function validateChainButton() {
 

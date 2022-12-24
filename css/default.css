@@ -186,6 +186,10 @@ h4 {
   border-radius: 15px;
 }
 
+#newH3 {
+  padding-left: 120px;
+}
+
 .displayBoxes {
   font-size: 1.2ch;
   border: 1px solid rgb(171, 49, 171);
@@ -239,7 +243,7 @@ li.displayBoxes {
 }
 
 .styled-button-white {
-  background-color: black;
+  background-color: transparent;
   color: white;
   border: 2px solid white;
   border-radius: 5px;
@@ -248,6 +252,7 @@ li.displayBoxes {
   padding-bottom: 5px;
   padding-left: 5px;
   cursor: pointer;
+  z-index: 99;
 }
 
 .styled-button-white:hover {
