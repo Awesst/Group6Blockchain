@@ -220,9 +220,10 @@ li.displayBoxes {
 
 #secondBackground {
   position: relative;
-  height: 1000vh;
+  height: 100vh;
   width: 100vw;
   background-color: black;
+  background-attachment: scroll; /* doesn*t work here */
 }
 
 .styled-button {
