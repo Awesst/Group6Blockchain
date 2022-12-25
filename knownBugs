@@ -12,4 +12,6 @@ Second API does geolocating, meaning, partial or complete address --> location, 
 
 API clash: when you both have an input AND click, it will either return null or some weird address in the USA. So, it's an either/or. Either you type and let the table populate (takes 1 second as I have set it to 1000ms in the debounce function) OR you click but then the field has to be empty. 
 
+When you fill in the IP field with an address and you go back and delete it, often it pulls some random US address instead of emptying all fields. Refresh page until fix.
+
 Trying to fix it with a little different logic.
