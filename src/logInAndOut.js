@@ -84,6 +84,13 @@ function createLoginField() {
         }
       }
 
+      let cityToCountry = {};
+      chain.blockChain.forEach(block => {
+        let city = block.data.city;
+        let country = block.data.country;
+        cityToCountry[city] = country;
+      });
+
       // Sort the cities by frequency in descending order
       let sortedCities = Object.keys(cityCounts).sort((a, b) => cityCounts[b] - cityCounts[a]);
 
@@ -125,7 +132,7 @@ function createLoginField() {
       // Loop through the top three cities and add them to the list along with the corresponding country and number of blocks logged from that city
       topThreeCities.forEach((city, index) => {
         let item = document.createElement("li");
-        item.innerHTML = `${city}, ${countries[index]} [logged ${cityCounts[city]} times]`;
+        item.innerHTML = `${city}, ${cityToCountry[city]} [logged ${cityCounts[city]} times]`;
         list.appendChild(item);
 
         // add here latest block:
@@ -358,7 +365,7 @@ function createLoggedInView() {
 
 
 
-// Can this be a sepaarte module? Sijce it is generally available for both logged in- and public users
+// Can this be a sepaarte module? Since it is generally available for both logged in- and public users
 
 // VALIDATE CHAIN
 
