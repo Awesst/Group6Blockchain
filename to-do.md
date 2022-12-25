@@ -33,22 +33,29 @@ MISC
 
 ////////////////////////////////////////////////////////////////////////////////
 
-Inlämningsuppgift
+**Inlämningsuppgift**
+
 Som en gruppuppgift så får ni i uppdrag att bygga en webbtjänst som bygger på en blockkedja.
 
 Ni får själva utveckla ett koncept och presentera varför denna tjänst skall utvecklas ovanför denna teknik.
 
 Sista veckan så skall gruppen presentera vad ni har åstakommit och både visa konceptet ni har utvecklat samt prototypen ni har skrivit. 
 
-G krav:
+**G krav**
 
 Tjänsten skall bygga på en blockkedja med en tydlig klasstruktur enligt blockchain modellen.
 Blocken i kedjan skall vara hashade/krypterade.
+
 Tjänsten skall även ha en inloggningsfunktion där användare skall kunna spara och lägga till saker i kedjan. Samt se sina block i kedjan. Ni skall använda LocalStorage som databas för kedjan.
-Eran kedja skall ha en öppen valideringsfunktion som användare skall kunna köra för att validera kedjan.
-Kedjan skall ha en “publik” del där även utomstående skall kunna se innehållet i kedjan.
+
+Eran kedja skall ha en öppen valideringsfunktion som användare skall kunna köra för att validera kedjan, valideringen kan vara automatisk, men skall redovisas på något sätt.
+
+Kedjan skall ha en “publik” del där även utomstående skall kunna se utvalda delar av innehållet i kedjan.
+
 Tjänsten skall vara lanserad på tex github pages.
-VG krav:
+
+**VG krav**
 
 Ett externt API skall användas för att hämta data till tjänsten. Dokumentera och visa på presentationen vilket/vilka API’er ni har valt att använda och varför.
+
 Förutom dessa krav ovan får ni gärna själva lägga till fler funktioner!

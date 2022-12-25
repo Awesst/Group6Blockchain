@@ -79,7 +79,7 @@ function createLoginField() {
       for (let city of cities) {
         if ((city !== "undefined") && city in cityCounts) { // exclude undefined cities: sometimes the API returns undefined
           cityCounts[city]++;
-        } else if (city) { // exclude undefined cities
+        } else if (city) { 
           cityCounts[city] = 1;
         }
       }
