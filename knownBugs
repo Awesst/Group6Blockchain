@@ -1,0 +1,15 @@
+Not possible to log in from some browsers with very tight settings that block scripts. 
+Try another browser! I - Cathy - can use everything with my Opera, Firefox and Chrome, but can't log in with Chrome Canary or the built-in VSC window. 
+
+Same thing for the location script where you click the arrow. Some browsers just won't let that API be used. 
+
+
+We have an API clash!
+
+First API does geolocating, meaning IP --> location and you invoke that by clicking the arrow.
+
+Second API does geolocating, meaning, partial or complete address --> location, and I'm watching "input" there, not "click". It picks up location automatically. Once the table is populated with location data, you just clikc "Log my location" and it will save your location into the next block.
+
+API clash: when you both have an input AND click, it will either return null or some weird address in the USA. So, it's an either/or. Either you type and let the table populate (takes 1 second as I have set it to 1000ms in the debounce function) OR you click but then the field has to be empty. 
+
+Trying to fix it with a little different logic.
