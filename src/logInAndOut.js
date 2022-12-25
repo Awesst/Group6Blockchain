@@ -79,7 +79,7 @@ function createLoginField() {
       for (let city of cities) {
         if ((city !== "undefined") && city in cityCounts) { // exclude undefined cities: sometimes the API returns undefined
           cityCounts[city]++;
-        } else if (city) { 
+        } else if (city) {
           cityCounts[city] = 1;
         }
       }
@@ -156,9 +156,6 @@ function createLoginField() {
       list.appendChild(latestBlock);
 
       // Add an empty line after the list item
-      list.appendChild(document.createElement("br"));
-
-      // Add an empty line after the very last line
       list.appendChild(document.createElement("br"));
 
     }
@@ -406,11 +403,11 @@ export function validateChainButton() {
   validateButton.addEventListener("click", () => {
     if (validateChain(first)) {
       validationStatus.classList.add("green");
-    console.log("Jakob är bäst!");
-  } else {
-    validationStatus.classList.add("red");
-  }
-});
+      console.log("Jakob är bäst!");
+    } else {
+      validationStatus.classList.add("red");
+    }
+  });
 }
 
 
