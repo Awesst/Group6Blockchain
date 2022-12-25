@@ -311,7 +311,7 @@ li.displayBoxes {
 }
 
 
-#validation-status::before {
+#validationStatus::before {
   display: inline-block;
   width: 10px;
   height: 10px;
@@ -319,10 +319,10 @@ li.displayBoxes {
   content: "";
 }
 
-#validation-status.red::before {
+#validationStatus.red::before {
   background-color: red;
 }
 
-#validation-status.green::before {
+#validationStatus.green::before {
   background-color: green;
 }

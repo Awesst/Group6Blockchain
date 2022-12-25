@@ -401,16 +401,14 @@ export function validateChainButton() {
   validateContainer.appendChild(validateButton);
 
   // add some visual cue to that the validation has been successful, other than just a console log --> green indicator
-  const validationStatus = document.getElementById("validation-status");
+  const validationStatus = document.getElementById("validationStatus");
 
   validateButton.addEventListener("click", () => {
     if (validateChain(first)) {
       validationStatus.classList.add("green");
-      validationStatus.classList.remove("red");
     console.log("Jakob är bäst!");
   } else {
     validationStatus.classList.add("red");
-    validationStatus.classList.remove("green");
   }
 });
 }
