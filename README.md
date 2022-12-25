@@ -1,6 +1,8 @@
 # Group6Blockchain
 
-Group 6, Assignment Build a blockchain prototype
+Group 6 assignment
+
+**BUILD A BLOCKCHAIN-BASED WEB APPLICATION PROROTYPE**
 
 
 **Short summary**
