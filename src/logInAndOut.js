@@ -188,7 +188,6 @@ function createLoggedInView() {
     localStorage.removeItem("userLoggedIn");
   });
 
-
   // STORE CHAIN IN LOCALSTORAGE -- ONLY AVAILABLE FOR LOGGED-IN USERS
 
   const logItButton = document.getElementById("logItButton");
@@ -231,7 +230,7 @@ function createLoggedInView() {
 
 
         console.log("chain after mapping", chain);
-        console.log("Cathy is a Class on her own -- a Goddess.prototype")
+        console.log("Cathy is a Class of her own -- a Goddess.prototype")
 
         chain.getLatestBlock();
         console.log("latest block before adding new", chain.getLatestBlock());
@@ -378,6 +377,7 @@ function createLoggedInView() {
     }
 
   });
+  
 }
 
 
