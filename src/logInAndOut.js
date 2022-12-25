@@ -254,6 +254,7 @@ function createLoggedInView() {
     }
   });
 
+
   // DISPLAY ACTIVE USER'S OWN BLOCKS
 
   let viewMyBlocksButton = document.getElementById("viewMyBlocksButton");
@@ -283,10 +284,10 @@ function createLoggedInView() {
     }); */
 
     // I put the above in a function to be able to toggle (but too brain-dead to fix the toggle anyway) 
-
+    // I modified so that it displays actual block number in the chain, not necessarily starting from 1 for the current user
     function getMySavedBlocks(chain, loggedInUser) {
-
-      return chain.blockChain.filter(function (block) {
+      return chain.blockChain.filter(function (block, index) {
+        block.blockNumber = index + 1; // add blockNumber property to block
         return block.data.user === loggedInUser;
       });
     }
@@ -307,7 +308,7 @@ function createLoggedInView() {
       newH2.appendChild(item);
 
       let blockNumber = document.createElement("p");
-      blockNumber.innerHTML = "Block " + (i + 1);
+      blockNumber.innerHTML = "Block " + mySavedBlocks[i].blockNumber; // display true block index (blockNumber) instead of starting from 1 for the current user
       blockNumber.classList.add("bold-text");
       item.appendChild(blockNumber);
 
@@ -351,7 +352,8 @@ function createLoggedInView() {
       newHashRow.classList.add("hash");
       item.appendChild(newHashRow);
 
-      // HIGHLIST MATCHING HASHES IN DROP-DOWN TABLE
+      // HIGHLIGHT MATCHING HASHES IN DROP-DOWN TABLE
+      // Good for a quick check, user can see immediately that the chain is valid, not having to rely on just a button stating so
 
       let hashElements = document.querySelectorAll(".hash");
 
