@@ -39,7 +39,7 @@ window.onload = () => {
 function createLoginField() {
 
   loginContainer.innerHTML =
-    '<input id="userName" type="text" placeholder="Username" class="styled-input"><input id="passWord" type="password" placeholder="Password" class="styled-input"></input><button id="loginButton" class="styled-button">Log in</button><br><br><br><p style="color: white; font-weight: bold">Public blockchain data</p><p style="color: white">We have worldwide coverage. Top three locations our system has been accessed from: <br><br><button id="frequentLocationsButton" class="styled-button">List locations</button><br><br><div id="newH3"></div><br><br>';
+    '<input id="userName" type="text" placeholder="Username" class="styled-input"><input id="passWord" type="password" placeholder="Password" class="styled-input"></input><button id="loginButton" class="styled-button">Log in</button><br><br><br><p style="color: white; font-weight: bold">Public blockchain data</p><p style="color: white">We have worldwide coverage. The three most frequent locations our system has been accessed from: <br><br><button id="frequentLocationsButton" class="styled-button">List locations</button><br><br><div id="newH3"></div><br><br>';
 
   let loginButton = document.getElementById("loginButton");
 
