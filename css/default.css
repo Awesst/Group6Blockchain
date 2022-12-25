@@ -5,6 +5,10 @@
   font-family: "Rubik", sans-serif;
 }
 
+.bold-text {
+  font-weight: bold;
+}
+
 .firstBackground {
   position: relative;
   height: 100vh;
@@ -158,6 +162,10 @@ span {
   justify-self: center;
 }
 
+ul {
+  list-style-type: none;
+}
+
 #loggedinView {
   margin-top: 20px;
 }
@@ -186,9 +194,17 @@ h4 {
   border-radius: 15px;
 }
 
+
 #newH3 {
-  padding-left: 120px;
-}
+  background-color: white;
+  border-radius: 15px;
+  width: 350px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: left;
+  margin: 0 auto; /* horizontally center the element */
+} 
+
 
 .displayBoxes {
   font-size: 1.2ch;
@@ -207,6 +223,15 @@ li.displayBoxes {
   font-weight: 100;
 }
 
+.hash:hover {
+  background-color: rgb(209, 204, 204);
+}
+
+
+.hash[data-hash]:hover {
+  background-color:rgb(209, 204, 204);
+}
+
 /* #validateContainer {
   position: absolute;
   top: 0px;
@@ -220,7 +245,7 @@ li.displayBoxes {
 
 #secondBackground {
   position: relative;
-  height: 100vh;
+  height: 1000vh;
   width: 100vw;
   background-color: black;
   background-attachment: scroll; /* doesn*t work here */
@@ -259,6 +284,7 @@ li.displayBoxes {
 .styled-button-white:hover {
   border-color: rgb(171, 49, 171);
   color: rgb(171, 49, 171);
+  box-shadow: 0 0 6px white; /* Glow on Validate button*/
 }
 
 .styled-input {

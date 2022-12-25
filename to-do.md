@@ -1,6 +1,6 @@
 GENERAL
 
-[?] web service -- why it should be run on a blockchain? Motivate
+[x] web service -- why it should be run on a blockchain? Motivate
 [x] js in modules
 [x] use localStorage to store entire chain
 [x] use an API to fetch location data
@@ -19,7 +19,7 @@ LOGGED IN STATE
 
 PUBLIC USER
 
-[ ] without login, SOME content of chain shall be available 
+[x] without login, SOME content of chain shall be available 
 [x] validation function available
 [x] login option
 

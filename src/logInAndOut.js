@@ -6,7 +6,7 @@ import { default as Block } from "/src/blockchain/block.js";
 
 let first = new Chain();
 
-const users = [
+let users = [
   { userName: "Janne", passWord: "Kemi" },
   { userName: "Jakob", passWord: "Dahlberg" },
   { userName: "Edvin", passWord: "Ekström" },
@@ -16,18 +16,32 @@ const users = [
   { userName: "Katalin", passWord: "Widén" },
 ];
 
+// SET UP AND STORE USERS IN LOCALSTORAGE
+
 if (!localStorage.getItem("users")) {
   localStorage.setItem("users", JSON.stringify(users));
 }
 
+// CHECK IF THERE IS SOMEONE LOGGED IN AND GENERATE LOGGED-IN OR PUBLIC VIEW ACCORDINGLY
+
+window.onload = () => {
+  const loggedInUser = localStorage.getItem("userLoggedIn");
+  if (loggedInUser) {
+    createLoggedInView(loggedInUser);
+  } else {
+    createLoginField();
+  }
+};
+
+
+// CREATES LOGIN INPUT FIELD AND BUTTON
+
 function createLoginField() {
-  //CREATES LOGIN INPUTFIELD AND BUTTON
 
   loginContainer.innerHTML =
-    '<input id="userName" type="text" placeholder="Username" class="styled-input"><input id="passWord" type="password" placeholder="Password" class="styled-input"></input><button id="loginButton">Log in</button>';
+    '<input id="userName" type="text" placeholder="Username" class="styled-input"><input id="passWord" type="password" placeholder="Password" class="styled-input"></input><button id="loginButton" class="styled-button">Log in</button><br><br><br><p style="color: white; font-weight: bold">Public blockchain data</p><p style="color: white">We have worldwide coverage. Top three locations our system has been accessed from: <br><br><button id="frequentLocationsButton" class="styled-button">List locations</button><br><br><div id="newH3"></div><br><br>';
 
   let loginButton = document.getElementById("loginButton");
-  loginButton.className = "styled-button";
 
   loginButton.addEventListener("click", () => {
     const users = JSON.parse(localStorage.getItem("users"));
@@ -42,21 +56,110 @@ function createLoginField() {
       alert("Invalid!");
     }
   });
+
+
+  // DISPLAY PUBLIC CHAIN DATA
+
+  frequentLocationsButton.addEventListener("click", () => {
+
+    const loggedInUser = localStorage.getItem("userLoggedIn");
+    if (!loggedInUser) {
+      let firstChain = localStorage.getItem("first");
+      let chain;
+
+      if (firstChain) {
+        chain = JSON.parse(localStorage.getItem("first"));
+      }
+
+      // Get all the cities from the blocks in the chain
+      let cities = chain.blockChain.map(block => block.data.city);
+
+      // Count the frequency of each city
+      let cityCounts = {};
+      for (let city of cities) {
+        if ((city !== "undefined") && city in cityCounts) { // exclude undefined cities: sometimes the API returns undefined
+          cityCounts[city]++;
+        } else if (city) { // exclude undefined cities
+          cityCounts[city] = 1;
+        }
+      }
+
+      // Sort the cities by frequency in descending order
+      let sortedCities = Object.keys(cityCounts).sort((a, b) => cityCounts[b] - cityCounts[a]);
+
+      // Get all the cities and countries from the blocks in the chain
+      let countries = chain.blockChain.map(block => block.data.country);
+
+      // Get the data for the newest block
+      let newestBlock = chain.blockChain[chain.blockChain.length - 1];
+      let newestBlockCity = newestBlock.data.city;
+      let newestBlockCountry = newestBlock.data.country;
+      let newestBlockTime = newestBlock.timestamp;
+
+      // Convert the timestamp to a date object
+      let date = new Date(newestBlockTime);
+
+      // Get the local time in the format "hh:mm:ss"
+      let localTime = date.toLocaleTimeString();
+
+      // Display the top five cities
+      let topThreeCities = sortedCities.slice(0, 3);
+      let parentEl = document.getElementById("newH3");
+
+      // Add an empty line before the header
+      let emptyLine = document.createElement("br");
+      parentEl.appendChild(emptyLine);
+
+      // Add a header to the list
+      let header = document.createElement("h3");
+      header.innerHTML = "Top three locations logged by our system";
+      parentEl.appendChild(header);
+
+      // Add an empty line after the header
+      parentEl.appendChild(document.createElement("br"));
+
+      // Create the list element
+      let list = document.createElement("ul");
+      parentEl.appendChild(list);
+
+      // Loop through the top three cities and add them to the list along with the corresponding country and number of blocks logged from that city
+      topThreeCities.forEach((city, index) => {
+        let item = document.createElement("li");
+        item.innerHTML = `${city}, ${countries[index]} [logged ${cityCounts[city]} times]`;
+        list.appendChild(item);
+
+        // add here latest block:
+        // Latest block has been added from location and timestamp  
+
+
+      });
+
+      // Add an empty line after the list
+      parentEl.appendChild(document.createElement("br"));
+    }
+
+  });
+
 }
 
+
+// GENERATES LOGGED-IN VIEW 
+
 function createLoggedInView() {
-  //CREATES THE VIEW THAT LOGGED IN USER SEES +LOGOUT Button
+
+  //CREATES THE VIEW THAT LOGGED IN USER SEES + LOGOUT AND SAVED LOCATIONS BUTTON
+
   let currentUser = localStorage.getItem("userLoggedIn");
   loginContainer.innerHTML = "";
   let loggedinView = document.createElement("h4");
   loginContainer.appendChild(loggedinView);
+
   loggedinView.innerHTML =
     "<br>Welcome, " +
     currentUser +
-    ', you have logged in! <br></br> <button id="logItButton" style="margin-right: 10px;">Log my location</button><button id="viewMyBlocksButton">View my saved locations</button><br></br><button id="logoutButton" >Log out</button><br></br><h3 id="newH3"></h3>';
-  let logoutButton = document.getElementById("logoutButton");
-  logoutButton.className = "styled-button";
+    ', you have logged in! <br></br> <button id="logItButton" style="margin-right: 10px;" class="styled-button">Log my location</button><button id="viewMyBlocksButton" class="styled-button">View my saved locations</button><br></br><button id="logoutButton" class="styled-button">Log out</button><br></br><h3 id="newH3"></h3>';
 
+  let logoutButton = document.getElementById("logoutButton");
 
   logoutButton.addEventListener("click", () => {
     createLoginField();
@@ -64,9 +167,9 @@ function createLoggedInView() {
   });
 
 
-  // STORE CHAIN IN LOCALSTORAGE
+  // STORE CHAIN IN LOCALSTORAGE -- ONLY AVAILABLE FOR LOGGED-IN USERS
+
   const logItButton = document.getElementById("logItButton");
-  logItButton.className = "styled-button";
 
   logItButton.addEventListener("click", async () => {
     // CHECK IF CHAIN EXISTS IN LOCAL STORAGE
@@ -126,14 +229,14 @@ function createLoggedInView() {
     }
   });
 
-
-// DISPLAY ACTIVE USER'S OWN BLOCKS
+  // DISPLAY ACTIVE USER'S OWN BLOCKS
 
   let viewMyBlocksButton = document.getElementById("viewMyBlocksButton");
   viewMyBlocksButton.className = "styled-button";
 
-
   viewMyBlocksButton.addEventListener("click", () => { ////NEW BUTTON 221222
+
+    // GENERATE LIST FROM LS FETCHED DATA
 
     let loggedInUser = localStorage.getItem("userLoggedIn"); //HÄMTAR LOGGEDINUSER FRÅN LS
     console.log("Loggedinuser är: " + loggedInUser); //LOGGED IN USER
@@ -143,20 +246,21 @@ function createLoggedInView() {
 
     if (firstChain) {
       chain = JSON.parse(localStorage.getItem("first"));
-      Object.setPrototypeOf(chain, Chain.prototype);
     }
 
     console.log("first.blockChain är: " + JSON.stringify(chain.blockChain)); //VISAR BLOCKKEDJAN
     console.log("first.blockChain[1].user är: " + JSON.stringify(chain.blockChain[1].data.user)); //VISAR VEM SOM SKAPAT BLOCK NR 2
 
 
-/*     let mySavedBlocks = chain.blockChain.filter(function (block) { //FILTRERAR UT DE BLOCK SOM LOGGED IN USER HAR SKAPAT I BLOCKKEDJAN OCH LÄGGER I NY ARRAY
-
-      return block.data.user === loggedInUser;
+    /* let mySavedBlocks = chain.blockChain.filter(function (block) { //FILTRERAR UT DE BLOCK SOM LOGGED IN USER HAR SKAPAT I BLOCKKEDJAN OCH LÄGGER I NY ARRAY
+    
+    return block.data.user === loggedInUser;
     }); */
 
-    function getMySavedBlocks(chain, loggedInUser) { // I put the above in a function to be able to toggle (but too brain-dead to fix the toggle anyway) 
-      
+    // I put the above in a function to be able to toggle (but too brain-dead to fix the toggle anyway) 
+
+    function getMySavedBlocks(chain, loggedInUser) {
+
       return chain.blockChain.filter(function (block) {
         return block.data.user === loggedInUser;
       });
@@ -170,53 +274,82 @@ function createLoggedInView() {
     newH2.setAttribute("id", "newH2");
     newH2.innerHTML = "Here are your saved blocks";
 
+    // GENERATE AND FILL THE DROP-DOWN TABLE
+
     for (let i = 0; i < mySavedBlocks.length; i++) {
       let item = document.createElement("li", "br");
       item.setAttribute("class", "displayBoxes");
       newH2.appendChild(item);
 
-      // displaying as drop-down table
-
       let blockNumber = document.createElement("p");
       blockNumber.innerHTML = "Block " + (i + 1);
-      // blockNumber.style.fontWeight = "bold"; does not work
+      blockNumber.classList.add("bold-text");
       item.appendChild(blockNumber);
 
       let userRow = document.createElement("p");
-      userRow.innerHTML = "user: " + mySavedBlocks[i].data.user;
+      userRow.innerHTML = "User: " + mySavedBlocks[i].data.user;
       item.appendChild(userRow);
 
       let longitudeRow = document.createElement("p");
-      longitudeRow.innerHTML = "longitude: " + mySavedBlocks[i].data.longitude;
+      longitudeRow.innerHTML = "Longitude: " + mySavedBlocks[i].data.longitude;
       item.appendChild(longitudeRow);
 
       let latitudeRow = document.createElement("p");
-      latitudeRow.innerHTML = "latitude: " + mySavedBlocks[i].data.latitude;
+      latitudeRow.innerHTML = "Latitude: " + mySavedBlocks[i].data.latitude;
       item.appendChild(latitudeRow);
 
       let cityRow = document.createElement("p");
-      cityRow.innerHTML = "city: " + mySavedBlocks[i].data.city;
+      cityRow.innerHTML = "City: " + mySavedBlocks[i].data.city;
       item.appendChild(cityRow);
 
       let countryRow = document.createElement("p");
-      countryRow.innerHTML = "country: " + mySavedBlocks[i].data.country;
+      countryRow.innerHTML = "Country: " + mySavedBlocks[i].data.country;
       item.appendChild(countryRow);
 
       let timestampRow = document.createElement("p");
-      timestampRow.innerHTML = "timestamp: " + mySavedBlocks[i].data.timestamp;
+      timestampRow.innerHTML = "Timestamp: " + mySavedBlocks[i].data.timestamp;
       item.appendChild(timestampRow);
 
       let timeRow = document.createElement("p");
-      timeRow.innerHTML = "time: " + mySavedBlocks[i].timestamp.toString().split("(")[0];
-      item.appendChild(timeRow); // take away (Central European Standard Time)
+      timeRow.innerHTML = "Local Time: " + mySavedBlocks[i].timestamp.toString().split("(")[0]; // take away (Central European Standard Time)
+      item.appendChild(timeRow);
 
       let previousHashRow = document.createElement("p");
-      previousHashRow.innerHTML = "previous hash: " + mySavedBlocks[i].previousHash;
+      previousHashRow.innerHTML = "Previous hash: " + mySavedBlocks[i].previousHash;
+      previousHashRow.setAttribute("data-hash", mySavedBlocks[i].previousHash);
+      previousHashRow.classList.add("hash");
       item.appendChild(previousHashRow);
 
       let newHashRow = document.createElement("p");
-      newHashRow.innerHTML = "new hash: " + mySavedBlocks[i].newHash;
+      newHashRow.innerHTML = "New hash: " + mySavedBlocks[i].newHash;
+      newHashRow.setAttribute("data-hash", mySavedBlocks[i].newHash);
+      newHashRow.classList.add("hash");
       item.appendChild(newHashRow);
+
+      // HIGHLIST MATCHING HASHES IN DROP-DOWN TABLE
+
+      let hashElements = document.querySelectorAll(".hash");
+
+      hashElements.forEach(function (hashElement) {
+        hashElement.addEventListener("mouseover", function (event) {
+          let dataHash = event.target.getAttribute("data-hash");
+          let hashSelector = `.hash[data-hash="${dataHash}"]`;
+          let matchingElements = document.querySelectorAll(hashSelector);
+          matchingElements.forEach(function (matchingElement) {
+            matchingElement.style.backgroundColor = "lightgrey";
+          });
+        });
+
+        hashElement.addEventListener("mouseout", function (event) {
+          let dataHash = event.target.getAttribute("data-hash");
+          let hashSelector = `.hash[data-hash="${dataHash}"]`;
+          let matchingElements = document.querySelectorAll(hashSelector);
+          matchingElements.forEach(function (matchingElement) {
+            matchingElement.style.backgroundColor = "";
+          });
+        });
+
+      });
 
     }
 
@@ -224,30 +357,8 @@ function createLoggedInView() {
 }
 
 
-/*     let parentEl = document.getElementById("newH3");
-    let newH2 = document.createElement("h2");
-    parentEl.appendChild(newH2);
-    newH2.setAttribute("id", "newH2");
-    newH2.innerHTML = "Here are your saved blocks";
- 
-    let list = document.createElement("ul");
-    newH2.appendChild(list);
- 
-    for (let i = 0; i < mySavedBlocks.length; i++) {
-      let item = document.createElement("li");
-      list.appendChild(item);
-      item.innerHTML = JSON.stringify(mySavedBlocks[i]); */
 
-
-window.onload = () => {
-  const loggedInUser = localStorage.getItem("userLoggedIn");
-  if (loggedInUser) {
-    createLoggedInView(loggedInUser);
-  } else {
-    createLoginField();
-  }
-};
-
+// Can this be a sepaarte module? Sijce it is generally available for both logged in- and public users
 
 // VALIDATE CHAIN
 
@@ -267,3 +378,6 @@ export function validateChainButton() {
     console.log("Jakob är bäst!");
   });
 }
+
+
+
