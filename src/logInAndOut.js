@@ -39,7 +39,7 @@ window.onload = () => {
 function createLoginField() {
 
   loginContainer.innerHTML =
-    '<input id="userName" type="text" placeholder="Username" class="styled-input"><input id="passWord" type="password" placeholder="Password" class="styled-input"></input><button id="loginButton" class="styled-button">Log in</button><br><br><br><p style="color: white; font-weight: bold">Public blockchain data</p><p style="color: white">We have worldwide coverage. The three most frequent locations our system has been accessed from: <br><br><button id="frequentLocationsButton" class="styled-button">List locations</button><br><br><div id="newH3"></div><br><br>';
+    '<input id="userName" type="text" placeholder="Username" class="styled-input"><input id="passWord" type="password" placeholder="Password" class="styled-input"></input><button id="loginButton" class="styled-button">Log in</button><br><br><br><p style="color: white; font-weight: bold">Public blockchain data</p><p style="color: white">We have worldwide coverage. Top three locations our system has been accessed from: <br><br><button id="frequentLocationsButton" class="styled-button">List locations</button><br><br><div id="newH3"></div><br><br>';
 
   let loginButton = document.getElementById("loginButton");
 
@@ -84,6 +84,7 @@ function createLoginField() {
         }
       }
 
+      // Find country corresponding to cities with highest count
       let cityToCountry = {};
       chain.blockChain.forEach(block => {
         let city = block.data.city;
@@ -91,11 +92,8 @@ function createLoginField() {
         cityToCountry[city] = country;
       });
 
-      // Sort the cities by frequency in descending order
+      // Sort according to city frequency
       let sortedCities = Object.keys(cityCounts).sort((a, b) => cityCounts[b] - cityCounts[a]);
-
-      // Get all the cities and countries from the blocks in the chain
-      let countries = chain.blockChain.map(block => block.data.country);
 
       // Get the data for the newest block
       let newestBlock = chain.blockChain[chain.blockChain.length - 1];
@@ -135,14 +133,34 @@ function createLoginField() {
         item.innerHTML = `${city}, ${cityToCountry[city]} [logged ${cityCounts[city]} times]`;
         list.appendChild(item);
 
-        // add here latest block:
-        // Latest block has been added from location and timestamp  
-
-
       });
 
-      // Add an empty line after the list
-      parentEl.appendChild(document.createElement("br"));
+      // Add an empty line before "Last block added from"
+      list.appendChild(document.createElement("br"));
+
+      // Create a header element for the latest block information
+      let latestBlockHeader = document.createElement("h5");
+      latestBlockHeader.innerHTML = "Last block added from";
+
+      // Create a paragraph element for last block information
+      let latestBlockParagraph = document.createElement("p");
+      latestBlockParagraph.innerHTML = `${newestBlockCity}, ${newestBlockCountry}, ${localTime}`;
+
+      let latestBlock = document.createElement("li");
+
+      // Append the header and paragraph elements to the list item
+      latestBlock.appendChild(latestBlockHeader);
+      latestBlock.appendChild(latestBlockParagraph);
+
+      // Append the list item to the list
+      list.appendChild(latestBlock);
+
+      // Add an empty line after the list item
+      list.appendChild(document.createElement("br"));
+
+      // Add an empty line after the very last line
+      list.appendChild(document.createElement("br"));
+
     }
 
   });
