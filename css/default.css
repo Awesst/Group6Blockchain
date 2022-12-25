@@ -309,3 +309,20 @@ li.displayBoxes {
 #validateButton:hover {
   opacity: 80%;
 }
+
+
+#validation-status::before {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  content: "";
+}
+
+#validation-status.red::before {
+  background-color: red;
+}
+
+#validation-status.green::before {
+  background-color: green;
+}

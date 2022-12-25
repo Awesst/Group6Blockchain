@@ -21,6 +21,7 @@ PUBLIC USER
 
 [x] without login, SOME content of chain shall be available 
 [x] validation function available
+[x] validation function visual feedback (green on success, red if chain is corrupt)
 [x] login option
 
 
