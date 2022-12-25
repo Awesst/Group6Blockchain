@@ -231,7 +231,7 @@ function createLoggedInView() {
 
 
         console.log("chain after mapping", chain);
-        console.log("Cathy is a Class on her own -- a Goddess.prototype")
+        console.log("Cathy is a Class of her own -- a Goddess.prototype")
 
         chain.getLatestBlock();
         console.log("latest block before adding new", chain.getLatestBlock());
