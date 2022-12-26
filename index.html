@@ -1,60 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="/css/default.css" />
-    <link rel="stylesheet" href="/css/mobile.css" />
-    <script src="./src/script.js" defer type="module"></script>
-    <link rel="shortcut icon" href="#" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Geolocation -- You. Can't. Hide.</title>
-  </head>
+  <link rel="stylesheet" href="/css/default.css" />
+  <link rel="stylesheet" href="/css/mobile.css" />
+  <script src="./src/script.js" defer type="module"></script>
+  <link rel="shortcut icon" href="#" />
 
-  <body>
-    <div class="firstBackground">
-      <div class="container">
-        <div class="title">
-          <h1 id="headTitle">
-            <span id="geoG">g</span><span id="geo">eo</span
-            ><span id="mi">MI</span>
-          </h1>
-          <span>YOU</span> can always run, but you can never <span>HIDE</span>
-        </div>
-        <div class="searchBox">
-          <input type="text" class="searchInput" placeholder="You. Can't. Hide."></input>
-          <div class="searchButton">
-            <img src="img/icon-arrow.svg" alt="" class="arrow" />
-          </div>
-        </div>
-        <div class="infoBox">
-          <div class="ip">
-            <div class="header">IP ADDRESS</div>
-            <div class="content ipInfo"></div>
-          </div>
-          <div class="line"></div>
-          <div class="location">
-            <div class="header">LOCATION</div>
-            <div class="content locationInfo"></div>
-          </div>
-          <div class="line"></div>
-          <div class="timezone">
-            <div class="header">LATITUDE</div>
-            <div class="content latitudeInfo"></div>
-          </div>
-          <div class="line"></div>
-          <div class="isp">
-            <div class="header">LONGITUDE</div>
-            <div class="content longitudeInfo"></div>
-          </div>
-        </div>
-        <div id="loginContainer"></div>
-        <div id="validateContainer"></div>
-        <div id="validationStatus"></div>
+  <title>Geolocation -- You. Can't. Hide.</title>
+</head>
+
+<body>
+  <div class="firstBackground">
+    <div class="container">
+      <div class="title">
+        <h1 id="headTitle">
+          <span id="geoG">g</span><span id="geo">eo</span><span id="mi">MI</span>
+        </h1>
+        <span>YOU</span> can always run, but you can never <span>HIDE</span>
       </div>
+      <br>
+    
+      <div class="searchBox">
+        <div class="gpsWrapper"><img src="../img/location.png" alt="GPS icon" class="gpsIcon">
+          <input type="text" class="searchInput" placeholder="Enter address, or click icon"></input>
+        </div>
+        <div class="searchButton">
+          <img src="img/icon-arrow.svg" alt="" class="arrow" />
+        </div>
+      </div>
+      <div class="infoBox">
+        <div class="ip">
+          <div class="header">IP ADDRESS</div>
+          <div class="content ipInfo"></div>
+        </div>
+        <div class="line"></div>
+        <div class="location">
+          <div class="header">LOCATION</div>
+          <div class="content locationInfo"></div>
+        </div>
+        <div class="line"></div>
+        <div class="timezone">
+          <div class="header">LATITUDE</div>
+          <div class="content latitudeInfo"></div>
+        </div>
+        <div class="line"></div>
+        <div class="isp">
+          <div class="header">LONGITUDE</div>
+          <div class="content longitudeInfo"></div>
+        </div>
+      </div>
+      <div id="loginContainer"></div>
+      <div id="validateContainer"></div>
+      <div id="validationStatus"></div>
     </div>
+  </div>
   <div id="secondBackground">
   </div>
+
+  <body>
+    <!-- other content -->
+    <div class="overlay-box">
+      <p>You need to be logged in to save location data on the blockchain</p>
+    </div>
   </body>
+
+</body>
+
 </html>

@@ -42,12 +42,6 @@ span {
   color: rgb(210, 190, 40);
 }
 
-#map {
-  height: 65vh;
-  width: 100vw;
-  z-index: 0;
-}
-
 .container {
   position: absolute;
   top: 5vh;
@@ -73,7 +67,7 @@ span {
 .searchBox {
   background-color: white;
   width: 35vw;
-  height: 8vh;
+  height: 6vh;
   justify-self: center;
   border-radius: 15px;
   display: grid;
@@ -118,6 +112,38 @@ span {
 
 .searchButton:hover {
   opacity: 0.7;
+}
+
+
+/* GPS icon in input field */
+.gpsWrapper {
+  position: relative; /* required for the pseudo-element to work */
+  pointer-events: mouse;
+}
+
+.gpsIcon {
+  /* adjust the size and position of the icon as needed */
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer; /* change the cursor to a hand when hovering over the icon */
+}
+
+/* GPS icon in input field (active --> event listener) */
+.gpsWrapper::before {
+  
+  background-image: url(../img/location.png);
+  background-size: 35px 35px; /* adjust the size of the icon */
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer; /* change the cursor to a hand when hovering over the icon */
 }
 
 .infoBox {
@@ -172,8 +198,8 @@ ul {
 
 h4 {
   background-color: white;
-  width: 80vw;
-  height: 30vh;
+  width: 70vw;
+  height: 12vh;
   z-index: 99;
   font-size: 2ch;
   color: rgb(171, 49, 171);
@@ -186,7 +212,6 @@ h5 {
 }
 
 #newH2 {
-  padding: 30px;
   width: 700px;
   padding-left: 30px;
   padding-right: 30px;
@@ -235,17 +260,6 @@ li.displayBoxes {
 .hash[data-hash]:hover {
   background-color:rgb(209, 204, 204);
 }
-
-/* #validateContainer {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 100px;
-} */
 
 #secondBackground {
   position: relative;
@@ -301,7 +315,8 @@ li.displayBoxes {
 }
 
 #validateButton {
-  position: sticky;
+  position: fixed;
+  display: flex;
   bottom: 5px;
   left: 5px;
 }
@@ -309,7 +324,6 @@ li.displayBoxes {
 #validateButton:hover {
   opacity: 80%;
 }
-
 
 #validationStatus::before {
   display: inline-block;

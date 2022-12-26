@@ -39,7 +39,7 @@ window.onload = () => {
 function createLoginField() {
 
   loginContainer.innerHTML =
-    '<input id="userName" type="text" placeholder="Username" class="styled-input"><input id="passWord" type="password" placeholder="Password" class="styled-input"></input><button id="loginButton" class="styled-button">Log in</button><br><br><br><p style="color: white; font-weight: bold">Public blockchain data</p><p style="color: white">We have worldwide coverage. Here, you can see a list of some of the most popular locations our system has been accessed from: <br><br><button id="frequentLocationsButton" class="styled-button">List locations</button><br><br><div id="newH3"></div><br><br>';
+    '<input id="userName" type="text" placeholder="Username" class="styled-input"><input id="passWord" type="password" placeholder="Password" class="styled-input"></input><button id="loginButton" class="styled-button">Log in</button><br><br><br><p style="color: white; font-weight: bold">Public blockchain data</p><p style="color: white">We have worldwide coverage. Here, you can see a list of some of the most popular locations our system has been accessed from: <br><br><button id="frequentLocationsButton" class="styled-button">List locations</button><div id="newH3"></div><br><br>';
 
   let loginButton = document.getElementById("loginButton");
 
@@ -179,7 +179,7 @@ function createLoggedInView() {
   loggedinView.innerHTML =
     "<br>Welcome, " +
     currentUser +
-    ', you have logged in! <br></br> <button id="logItButton" style="margin-right: 10px;" class="styled-button">Log my location</button><button id="viewMyBlocksButton" class="styled-button">View my saved locations</button><br></br><button id="logoutButton" class="styled-button">Log out</button><br></br><h3 id="newH3"></h3>';
+    ', you have logged in! <br></br> <button id="logoutButton" class="styled-button">Log out</button> <span>&nbsp;</span> <button id="viewMyBlocksButton" class="styled-button">View my saved locations</button><br></br><h3 id="newH3"></h3>';
 
   let logoutButton = document.getElementById("logoutButton");
 
@@ -190,63 +190,75 @@ function createLoggedInView() {
 
   // STORE CHAIN IN LOCALSTORAGE -- ONLY AVAILABLE FOR LOGGED-IN USERS
 
-  const logItButton = document.getElementById("logItButton");
+  let searchButton = document.getElementsByClassName("searchButton")[0];
 
-  logItButton.addEventListener("click", async () => {
-    // CHECK IF CHAIN EXISTS IN LOCAL STORAGE
-    let chain;
+  searchButton.addEventListener("click", async () => {
 
-    try {
-      const firstChain = localStorage.getItem("first");
+    // Check if user is logged in
+    let currentUser = localStorage.getItem("userLoggedIn");
+    if (currentUser === null || currentUser === '') {
 
-      if (!firstChain) {
+      // Show alert
+      alert("You must be logged in to add blocks to the chain!");
 
-        // no valid chain in LS --> create one and store in LS
-        chain = new Chain();
+    } else {
 
-        console.log("Created new chain");
+      // User is logged in, so proceed with adding a new block to the chain
+      // CHECK IF CHAIN EXISTS IN LOCAL STORAGE
+      let chain;
 
-        console.log("test1", chain instanceof Chain);
-        console.log("chain before going into LS", chain);
+      try {
+        const firstChain = localStorage.getItem("first");
 
-        localStorage.setItem("first", JSON.stringify(chain));
+        if (!firstChain) {
 
-        console.log("genesis block", chain.getLatestBlock()); // correctly logs first block
+          // no valid chain in LS --> create one and store in LS
+          chain = new Chain();
 
-      } else {
-        // RETRIEVE CHAIN FROM LOCAL STORAGE AND ADD NEW BLOCK
+          console.log("Created new chain");
 
-        chain = JSON.parse(localStorage.getItem("first"));
-        Object.setPrototypeOf(chain, Chain.prototype); // when we fetch an object from LS, prototype needs to be reassigned. Methods like addBlock() can only be used if we regenerate the chain object (Chain.prototype)
+          console.log("test1", chain instanceof Chain);
+          console.log("chain before going into LS", chain);
 
-        console.log("test2", chain instanceof Chain); // true
-        console.log("chain fetched from LS", chain);
+          localStorage.setItem("first", JSON.stringify(chain));
 
-        // recreate Blocks:
-        // create new array [blocks] consisting of Block objects from chain data
-        // new Block is created to recreate data, newHash and PrebiousHash properties in the blockChain array
-        const blocks = chain.blockChain.map(item => new Block(item.data, item.newHash, item.previousHash));
-        //chain.addBlock(new Block(Chain.chain.map(item => item))); // Janne's magic
+          console.log("genesis block", chain.getLatestBlock()); // correctly logs first block
+
+        } else {
+          // RETRIEVE CHAIN FROM LOCAL STORAGE AND ADD NEW BLOCK
+
+          chain = JSON.parse(localStorage.getItem("first"));
+          Object.setPrototypeOf(chain, Chain.prototype); // when we fetch an object from LS, prototype needs to be reassigned. Methods like addBlock() can only be used if we regenerate the chain object (Chain.prototype)
+
+          console.log("test2", chain instanceof Chain); // true
+          console.log("chain fetched from LS", chain);
+
+          // recreate Blocks:
+          // create new array [blocks] consisting of Block objects from chain data
+          // new Block is created to recreate data, newHash and PrebiousHash properties in the blockChain array
+          const blocks = chain.blockChain.map(item => new Block(item.data, item.newHash, item.previousHash));
+          //chain.addBlock(new Block(Chain.chain.map(item => item))); // Janne's magic
 
 
-        console.log("chain after mapping", chain);
-        console.log("Cathy is a Class of her own -- a Goddess.prototype")
+          console.log("chain after mapping", chain);
+          console.log("Cathy is a Class of her own -- a Goddess.prototype")
 
-        chain.getLatestBlock();
-        console.log("latest block before adding new", chain.getLatestBlock());
+          chain.getLatestBlock();
+          console.log("latest block before adding new", chain.getLatestBlock());
 
-        await chain.addBlock(); // so that it has enough time to hash
+          await chain.addBlock(); // so that it has enough time to hash
 
-        chain.getLatestBlock();
-        console.log("latest block after adding new", chain.getLatestBlock());
-        console.log("chain after adding a block", chain);
+          chain.getLatestBlock();
+          console.log("latest block after adding new", chain.getLatestBlock());
+          console.log("chain after adding a block", chain);
 
-        localStorage.setItem("first", JSON.stringify(chain));
+          localStorage.setItem("first", JSON.stringify(chain));
+        }
       }
-    }
-    catch (error) {
-      console.error(error);
-      alert("An error occurred while updating the chain. Please try again.");
+      catch (error) {
+        console.error(error);
+        alert("An error occurred while updating the chain. Please try again.");
+      }
     }
   });
 
@@ -371,13 +383,9 @@ function createLoggedInView() {
             matchingElement.style.backgroundColor = "";
           });
         });
-
       });
-
     }
-
   });
-  
 }
 
 
@@ -409,6 +417,3 @@ export function validateChainButton() {
     }
   });
 }
-
-
-

@@ -1,55 +1,59 @@
 @media only screen and (max-width: 1200px) {
-    .container {
-      top: 2vh;
-      gap: 1rem;
-      width: 80vw;
-      margin-left: -40%;
-    }
-  
-    .searchBox {
-      width: 80vw;
-    }
-  
-    .searchInput {
-      padding-left: 2vw;
-      height: 80%;
-      line-height: 0vh;
-      font-size: 0.9rem;
-      line-height: 6vh;
-    }
-  
-    .searchInput::placeholder {
-      font-size: 0.9rem;
-      line-height: 6.2vh;
-    }
-  
-    .line {
-      display: none;
-    }
-  
-    .infoBox {
-      grid-template-columns: none;
-      grid-template-rows: 1fr 1fr 1fr 1fr;
-      height: 35vh;
-      width: 80vw;
-      padding-top: 2vh;
-      padding-bottom: 1vh;
-      gap: 1rem;
-    }
-  
-    .ip,
-    .location {
-      grid-template-rows: 0.6fr 1fr;
-    }
-  
-    .header {
-      text-align: center;
-      font-size: 0.6rem;
-    }
-  
-    .content {
-      text-align: center;
-      font-weight: 500;
-      font-size: 1rem;
-    }
+  .container {
+    top: 2vh;
+    gap: 1rem;
+    width: 80vw;
+    margin-left: -40%;
   }
+
+  .searchBox {
+    width: 60vw;
+  }
+
+  h4 {
+    width: 80vw;
+  }
+
+  .searchInput {
+    padding-left: 2vw;
+    height: 80%;
+    line-height: 0vh;
+    font-size: 0.9rem;
+    line-height: 6vh;
+  }
+
+  .searchInput::placeholder {
+    font-size: 0.9rem;
+    line-height: 6.2vh;
+  }
+
+  .line {
+    display: none;
+  }
+
+  .infoBox {
+    grid-template-columns: none;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    height: 35vh;
+    width: 80vw;
+    padding-top: 2vh;
+    padding-bottom: 1vh;
+    gap: 1rem;
+  }
+
+  .ip,
+  .location {
+    grid-template-rows: 0.6fr 1fr;
+  }
+
+  .header {
+    text-align: center;
+    font-size: 0.8rem;
+  }
+
+  .content {
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+}
