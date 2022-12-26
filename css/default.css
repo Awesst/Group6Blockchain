@@ -196,15 +196,21 @@ ul {
   margin-top: 20px;
 }
 
+#loggedinView p {
+  color: black;
+}
+
 h4 {
   background-color: white;
   width: 70vw;
-  height: 12vh;
+  height: 17vh;
   z-index: 99;
   font-size: 2ch;
+  font-weight: 100;
   color: rgb(171, 49, 171);
   border-radius: 15px;
   padding-left: 20px;
+  padding-right: 20px;
 }
 
 h5 {

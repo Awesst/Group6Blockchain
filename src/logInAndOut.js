@@ -39,7 +39,7 @@ window.onload = () => {
 function createLoginField() {
 
   loginContainer.innerHTML =
-    '<input id="userName" type="text" placeholder="Username" class="styled-input"><input id="passWord" type="password" placeholder="Password" class="styled-input"></input><button id="loginButton" class="styled-button">Log in</button><br><br><br><p style="color: white; font-weight: bold">Public blockchain data</p><p style="color: white">We have worldwide coverage. Here, you can see a list of some of the most popular locations our system has been accessed from: <br><br><button id="frequentLocationsButton" class="styled-button">List locations</button><div id="newH3"></div><br><br>';
+    '<p style="color: white; font-weight: bold">For registered users</p><p style="color: white">Please, log in to add data to the chain.<br><br><input id="userName" type="text" placeholder="Username" class="styled-input"><input id="passWord" type="password" placeholder="Password" class="styled-input"></input><button id="loginButton" class="styled-button">Log in</button><br><br><br><p style="color: white; font-weight: bold">Public blockchain data</p><p style="color: white">We have worldwide coverage. Here, you can see a list of some of the most popular locations our system has been accessed from: <br><br><button id="frequentLocationsButton" class="styled-button">List locations</button><div id="newH3"></div><br><br>';
 
   let loginButton = document.getElementById("loginButton");
 
@@ -177,9 +177,9 @@ function createLoggedInView() {
   loginContainer.appendChild(loggedinView);
 
   loggedinView.innerHTML =
-    "<br>Welcome, " +
-    currentUser +
-    ', you have logged in! <br></br> <button id="logoutButton" class="styled-button">Log out</button> <span>&nbsp;</span> <button id="viewMyBlocksButton" class="styled-button">View my saved locations</button><br></br><h3 id="newH3"></h3>';
+  '<br><strong>Welcome, ' +
+  currentUser +
+  ', you have logged in!</strong> <br></br> <p style="color: black">Enter an address, or click the location icon to fetch your location data.<br> Click the <span style="color: rgb(171, 49, 171);"><strong>arrow</strong></span> to the right to log your data on the chain. <br><br><button id="logoutButton" class="styled-button">Log out</button> <span>&nbsp;</span> <button id="viewMyBlocksButton" class="styled-button">View my saved locations</button><br></br><h3 id="newH3"></h3>';
 
   let logoutButton = document.getElementById("logoutButton");
 
