@@ -75,7 +75,7 @@ export function rollApi(searchButton, input) {
                 localStorage.setItem("city", data.features[0].properties.city);
                 localStorage.setItem("country", data.features[0].properties.country);
             }
-        }, 1000);
+        }, 750);
     }
 
 

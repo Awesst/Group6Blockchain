@@ -203,7 +203,7 @@ ul {
 h4 {
   background-color: white;
   width: 70vw;
-  height: 17vh;
+  height: 18vh;
   z-index: 99;
   font-size: 2ch;
   font-weight: 100;
@@ -221,6 +221,7 @@ h5 {
   width: 700px;
   padding-left: 30px;
   padding-right: 30px;
+  margin-bottom: 10px; 
   font-size: 1.8ch;
   background-color: white;
   border: 3px solid rgb(171, 49, 171);
@@ -240,16 +241,12 @@ h5 {
   margin: 0 auto; /* horizontally center the element */
 } 
 
-
 .displayBoxes {
   font-size: 1.2ch;
   border: 1px solid rgb(171, 49, 171);
   padding: 10px;
-  margin: 5px;
   border-radius: 5px;
-}
-
-.displayBoxes {
+  margin: 10px;
   width: 100%;
 }
 
@@ -257,6 +254,7 @@ li.displayBoxes {
   list-style: none;
   font-weight: 100;
 }
+
 
 .hash:hover {
   background-color: rgb(209, 204, 204);
