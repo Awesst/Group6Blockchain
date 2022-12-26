@@ -7,7 +7,7 @@ JSON file example this API fetches: https://api.geoapify.com/v1/geocode/search?t
 
 This API translates address input by the user into latitude/longitude. The address does not need to be an exact match; the API is built in such a way that it autocompletes upon user input, and offers the most likely match automatically. It also recognizes locations in multiple languages, such as Roma/Rome, Italy, Nice/Nizza, France, or Stockholm/Estocolmo (Stockholm in Spanish) for Stockholm. 
 
-This API requires registration and, hence, an APi key. Free accounts have a daily limit of requents. For the testing purposes of our prototype application, we have consistently been under that limit.
+This API requires registration and, hence, an API key. Free accounts have a daily limit of requents. For the testing purposes of our prototype application, we have consistently been under that limit.
 
 This API can also do geocoding, but since the fetch requests get summed up per API key, it is safer to split the job between these two APIs.
 
@@ -21,6 +21,6 @@ The geolocation API is used to display an approximate location (latitude/longitu
 
 Most providers that offer this service either require a paid account. ip-api is one of the few available that does not require such.
 
-We use this API to fetch location data when the user did not actively fill in the input field; i.e., if (!input.value).
+We use this API when the user did not actively fill in the input field, and clicks the location icon to fetch their IP address automatically.
 
 
